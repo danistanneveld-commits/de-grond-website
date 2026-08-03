@@ -225,3 +225,112 @@ input:focus, select:focus, textarea:focus { outline: 3px solid rgba(178,138,82,.
   .cta-card { align-items: flex-start; flex-direction: column; padding: 36px 26px; }
   .modal-content { padding: 32px 22px; }
 }
+
+/* ========================================
+   SUBTIELE ANIMATIES
+======================================== */
+
+/* Elementen zijn eerst iets lager en transparant */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms ease,
+    transform 700ms ease;
+}
+
+/* JavaScript voegt deze klasse toe zodra het element zichtbaar wordt */
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Kleine vertragingen voor onderdelen naast elkaar */
+.reveal-delay-1 {
+  transition-delay: 100ms;
+}
+
+.reveal-delay-2 {
+  transition-delay: 200ms;
+}
+
+.reveal-delay-3 {
+  transition-delay: 300ms;
+}
+
+/* Subtiele hover voor kaarten */
+.card,
+.feature-card,
+.fundament-card {
+  transition:
+    transform 250ms ease,
+    box-shadow 250ms ease,
+    border-color 250ms ease;
+}
+
+.card:hover,
+.feature-card:hover,
+.fundament-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.18);
+}
+
+/* Knoppen reageren licht op de muis */
+button,
+.button,
+.btn,
+a.button {
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+button:hover,
+.button:hover,
+.btn:hover,
+a.button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+
+button:active,
+.button:active,
+.btn:active,
+a.button:active {
+  transform: translateY(0);
+}
+
+/* Logo of hero-afbeelding rustig laten verschijnen */
+.logo-intro {
+  animation: logoIntro 900ms ease-out both;
+}
+
+@keyframes logoIntro {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Respecteer mensen die minder animatie willen */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
