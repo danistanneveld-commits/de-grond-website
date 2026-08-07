@@ -368,3 +368,21 @@ a.button:active {
         height: 46px;
     }
 }
+
+.founder-photo {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+
+  display: block;
+  margin-top: 32px;
+
+  border-radius: 20px;
+  border: 1px solid rgba(178, 138, 82, 0.55);
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.28),
+    0 0 40px rgba(178, 138, 82, 0.08);
+}
