@@ -14,91 +14,24 @@
 <meta content="https://de-grond-website.pages.dev/logo.png" property="og:image"/>
 <link href="styles.css" rel="stylesheet"/>
 <link href="logo.png" rel="icon" type="image/png"/>
-<style>
-/* Houd het eerste deel van de hero-titel in de oorspronkelijke kleur/opmaak. */
-    .hero h1 .dg-title-main { color: inherit !important; display: inline !important; }
-
-    /* =========================================================
-       BEHEERSTAND — alleen zichtbaar met ?beheer=1
-       ========================================================= */
-    #dg-editor-root, #dg-editor-root * { box-sizing: border-box; }
-    #dg-editor-root { position: relative; z-index: 2147483000; font-family: Arial, Helvetica, sans-serif; }
-    .dg-admin-pill {
-      position: fixed; left: 16px; bottom: 16px; z-index: 2147483000;
-      display: flex; align-items: center; gap: 8px; padding: 9px 12px;
-      border-radius: 999px; color: #fff; background: #0A1018;
-      border: 1px solid rgba(200,163,106,.55); box-shadow: 0 10px 28px rgba(0,0,0,.35);
-      font-size: 13px; font-weight: 800; letter-spacing: .02em;
-    }
-    .dg-admin-pill button { all: unset; cursor: pointer; color: #C8A36A; padding: 2px 4px; }
-    .dg-editor-panel {
-      position: fixed; z-index: 2147483001; top: 0; right: 0; width: min(430px, 96vw); height: 100vh;
-      display: flex; flex-direction: column; color: #eef3f7; background: #0A1018;
-      border-left: 1px solid rgba(200,163,106,.28); box-shadow: -20px 0 50px rgba(0,0,0,.32);
-      transform: translateX(102%); transition: transform .22s ease;
-    }
-    .dg-editor-panel.dg-open { transform: translateX(0); }
-    .dg-editor-head { padding: 18px 18px 14px; border-bottom: 1px solid rgba(255,255,255,.09); }
-    .dg-editor-head-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-    .dg-editor-title { margin: 0; font-size: 20px; color: #fff; }
-    .dg-editor-sub { margin: 6px 0 0; font-size: 12px; line-height: 1.5; color: #b9c2cb; }
-    .dg-icon-btn { border: 0; background: transparent; color: #fff; cursor: pointer; font-size: 24px; line-height: 1; }
-    .dg-editor-search { width: 100%; margin-top: 12px; padding: 11px 12px; border-radius: 10px; border: 1px solid rgba(255,255,255,.14); background: #111B29; color: #fff; outline: none; }
-    .dg-editor-body { overflow: auto; padding: 14px 14px 130px; }
-    .dg-group { margin: 0 0 18px; }
-    .dg-group-title { position: sticky; top: -1px; z-index: 2; margin: 0 0 8px; padding: 8px 4px; background: #0A1018; color: #C8A36A; font-size: 12px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
-    .dg-field { margin: 0 0 10px; padding: 10px; border: 1px solid rgba(255,255,255,.09); border-radius: 12px; background: #111B29; }
-    .dg-field[hidden] { display: none !important; }
-    .dg-field label { display: block; margin-bottom: 7px; color: #dce3ea; font-size: 12px; font-weight: 800; }
-    .dg-field textarea { width: 100%; min-height: 70px; resize: vertical; padding: 10px; border: 1px solid rgba(255,255,255,.14); border-radius: 9px; background: #08111d; color: #fff; font: 14px/1.45 Arial, Helvetica, sans-serif; outline: none; }
-    .dg-field textarea:focus { border-color: rgba(200,163,106,.78); box-shadow: 0 0 0 3px rgba(200,163,106,.12); }
-    .dg-jump { margin-top: 7px; border: 0; background: transparent; color: #C8A36A; cursor: pointer; padding: 0; font-size: 12px; font-weight: 800; }
-    .dg-editor-actions { position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; border-top: 1px solid rgba(255,255,255,.1); background: rgba(10,16,24,.98); backdrop-filter: blur(12px); }
-    .dg-action { min-height: 42px; border-radius: 10px; border: 1px solid rgba(255,255,255,.13); background: #172333; color: #fff; cursor: pointer; font-weight: 800; }
-    .dg-action:hover { filter: brightness(1.08); }
-    .dg-action.dg-primary { grid-column: 1 / -1; border-color: #C8A36A; background: #B28A52; color: #08111d; }
-    .dg-action.dg-danger { color: #ffb3b3; }
-    .dg-highlight { outline: 3px solid rgba(200,163,106,.9) !important; outline-offset: 5px !important; border-radius: 4px; }
-    .dg-toast { position: fixed; z-index: 2147483003; left: 50%; bottom: 22px; transform: translateX(-50%) translateY(16px); max-width: min(620px, 92vw); padding: 12px 16px; border-radius: 12px; background: #07101a; color: #fff; border: 1px solid rgba(200,163,106,.55); box-shadow: 0 12px 36px rgba(0,0,0,.35); opacity: 0; pointer-events: none; transition: .2s ease; font-size: 14px; text-align: center; }
-    .dg-toast.dg-show { opacity: 1; transform: translateX(-50%) translateY(0); }
-    .dg-settings-backdrop { position: fixed; z-index: 2147483002; inset: 0; display: none; place-items: center; padding: 18px; background: rgba(0,0,0,.68); }
-    .dg-settings-backdrop.dg-open { display: grid; }
-    .dg-settings { width: min(560px, 96vw); max-height: 92vh; overflow: auto; border-radius: 18px; padding: 20px; background: #0A1018; color: #fff; border: 1px solid rgba(200,163,106,.4); box-shadow: 0 25px 70px rgba(0,0,0,.48); }
-    .dg-settings h2 { margin: 0 0 8px; font-size: 22px; }
-    .dg-settings p { color: #bec8d1; line-height: 1.55; font-size: 13px; }
-    .dg-settings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .dg-settings label { display: block; color: #dfe6ec; font-size: 12px; font-weight: 800; }
-    .dg-settings input { width: 100%; margin-top: 6px; padding: 11px 12px; border-radius: 9px; border: 1px solid rgba(255,255,255,.14); background: #111B29; color: #fff; outline: none; }
-    .dg-settings .dg-full { grid-column: 1 / -1; }
-    .dg-settings-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin-top: 16px; }
-    .dg-small-note { padding: 10px 12px; border-radius: 10px; background: rgba(200,163,106,.08); border: 1px solid rgba(200,163,106,.18); }
-    @media (max-width: 700px) {
-      .dg-editor-panel { width: 100vw; }
-      .dg-settings-grid { grid-template-columns: 1fr; }
-      .dg-settings .dg-full { grid-column: auto; }
-      .dg-admin-pill { left: 10px; bottom: 10px; }
-    }
-</style>
+<link href="admin.css" rel="stylesheet"/>
 <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "DE GROND",
-    "description": "Democratische beweging — Vrij. Nuchter. Weerbaar.",
-    "url": "https://de-grond-website.pages.dev/",
-    "logo": "https://de-grond-website.pages.dev/logo.png",
-    "founder": {
-      "@type": "Person",
-      "name": "Daniel Stanneveld"
-    }
-  }
-  </script>
+{
+"@context": "https://schema.org",
+"@type": "Organization",
+"name": "DE GROND",
+"description": "Democratische beweging — Vrij. Nuchter. Weerbaar.",
+"url": "https://de-grond-website.pages.dev/",
+"logo": "https://de-grond-website.pages.dev/logo.png",
+"founder": {
+"@type": "Person",
+"name": "Daniel Stanneveld"
+}
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#inhoud">Ga naar de inhoud</a>
-<!-- =========================================================
-       HEADER / MENU
-       ========================================================= -->
 <header class="site-header" data-edit-group="Menu" id="top">
 <div class="container nav-wrap">
 <a aria-label="DE GROND, naar boven" class="brand" href="#top">
@@ -123,9 +56,6 @@
 </div>
 </header>
 <main id="inhoud">
-<!-- =========================================================
-         HERO — HIER KUN JE DE BELANGRIJKSTE TEKST AANPASSEN
-         ========================================================= -->
 <section class="hero" data-edit-group="Startpagina">
 <div aria-hidden="true" class="hero-glow"></div>
 <div class="container hero-grid">
@@ -133,9 +63,9 @@
 <p class="eyebrow" data-edit-key="hero-eyebrow" data-edit-label="Kleine tekst boven titel">Stadskanaal 2030</p>
 <h1><span class="dg-title-main" data-edit-key="hero-title-main" data-edit-label="Hoofdtitel — eerste deel">De wortels liggen hier.</span> <span data-edit-key="hero-title-accent" data-edit-label="Hoofdtitel — gouden deel">Nu bouwen we verder.</span></h1>
 <p class="hero-lead" data-edit-key="hero-lead" data-edit-label="Introductietekst">
-            DE GROND begint in Stadskanaal. Vrij, nuchter en weerbaar.
-            Geen kind buitenspel. Niemand door het ijs. Macht onder recht.
-          </p>
+DE GROND begint in Stadskanaal. Vrij, nuchter en weerbaar.
+Geen kind buitenspel. Niemand door het ijs. Macht onder recht.
+</p>
 <div class="hero-actions">
 <button class="button join-trigger" data-edit-key="hero-primary-button" data-edit-label="Knop: Word medegrondlegger" type="button">Word medegrondlegger</button>
 <a class="button button-ghost" data-edit-key="hero-secondary-button" data-edit-label="Knop: Bekijk onze koers" href="#speerpunten">Bekijk onze koers</a>
@@ -158,7 +88,6 @@
 </aside>
 </div>
 </section>
-<!-- KERNZINNEN -->
 <section aria-label="Kernzinnen" class="ticker" data-edit-group="Kernzinnen">
 <div class="ticker-track">
 <span data-edit-key="ticker-1" data-edit-label="Kernzin 1">Laat je niet gek maken</span><i aria-hidden="true">✦</i>
@@ -167,9 +96,6 @@
 <span data-edit-key="ticker-4" data-edit-label="Kernzin 4">Geen belofte. Beweging.</span><i aria-hidden="true">✦</i>
 </div>
 </section>
-<!-- =========================================================
-         MISSIE
-         ========================================================= -->
 <section class="section" data-edit-group="Missie" id="missie">
 <div class="container split">
 <div class="section-heading reveal">
@@ -178,19 +104,16 @@
 </div>
 <div class="prose reveal">
 <p data-edit-key="mission-p1" data-edit-label="Missie — alinea 1">
-            Wij geloven in vrijheid met verantwoordelijkheid, menselijkheid met grenzen
-            en samenwerking zonder bestuurlijke pap. Iedereen mag meewegen; niemand mag gijzelen.
-          </p>
+Wij geloven in vrijheid met verantwoordelijkheid, menselijkheid met grenzen
+en samenwerking zonder bestuurlijke pap. Iedereen mag meewegen; niemand mag gijzelen.
+</p>
 <p data-edit-key="mission-p2" data-edit-label="Missie — alinea 2">
-            DE GROND wil een overheid die problemen vroeg oplost, eerlijk gedrag sterker maakt
-            dan crimineel overleven en mensen niet eerst volledig kapot laat gaan voordat hulp begint.
-          </p>
+DE GROND wil een overheid die problemen vroeg oplost, eerlijk gedrag sterker maakt
+dan crimineel overleven en mensen niet eerst volledig kapot laat gaan voordat hulp begint.
+</p>
 </div>
 </div>
 </section>
-<!-- =========================================================
-         ONZE PLANNEN / VIER FUNDAMENTEN
-         ========================================================= -->
 <section class="section section-dark" data-edit-group="Onze plannen" id="speerpunten">
 <div class="container">
 <div class="section-heading centered reveal">
@@ -225,9 +148,6 @@
 </div>
 </div>
 </section>
-<!-- =========================================================
-         STADSKANAAL 2030
-         ========================================================= -->
 <section class="section stadskanaal" data-edit-group="Stadskanaal 2030" id="stadskanaal">
 <div class="container locality-grid">
 <div aria-hidden="true" class="locality-art reveal">
@@ -240,10 +160,10 @@
 <p class="eyebrow" data-edit-key="local-eyebrow" data-edit-label="Stadskanaal — kleine titel">Onze proeftuin</p>
 <h2 data-edit-key="local-title" data-edit-label="Stadskanaal — titel">Trots op Stadskanaal 💗</h2>
 <p data-edit-key="local-body" data-edit-label="Stadskanaal — tekst">
-            Niet wachten tot Den Haag ineens wijs wordt. We beginnen lokaal:
-            met sterke buurten, sport voor ieder kind, ruimte voor kleine ondernemers
-            en een bestuur dat zichtbaar verantwoordelijkheid neemt.
-          </p>
+Niet wachten tot Den Haag ineens wijs wordt. We beginnen lokaal:
+met sterke buurten, sport voor ieder kind, ruimte voor kleine ondernemers
+en een bestuur dat zichtbaar verantwoordelijkheid neemt.
+</p>
 <div class="locality-points">
 <div><strong data-edit-key="local-stat-1-number" data-edit-label="Blok 1 — getal">500</strong><span data-edit-key="local-stat-1-label" data-edit-label="Blok 1 — uitleg">euro sportpas als ambitie</span></div>
 <div><strong data-edit-key="local-stat-2-number" data-edit-label="Blok 2 — getal">72u</strong><span data-edit-key="local-stat-2-label" data-edit-label="Blok 2 — uitleg">voor een vaste casusregisseur</span></div>
@@ -253,46 +173,38 @@
 </div>
 </div>
 </section>
-<!-- =========================================================
-         WIE WIJ ZIJN
-         ========================================================= -->
 <section class="section" data-edit-group="Wie wij zijn" id="wie-wij-zijn">
 <div class="container split">
 <div class="section-heading reveal">
 <p class="eyebrow" data-edit-key="who-eyebrow" data-edit-label="Wie wij zijn — kleine titel">Wie wij zijn</p>
 <h2 data-edit-key="who-title" data-edit-label="Wie wij zijn — titel">Politiek begint bij mensen, niet bij een partijmachine.</h2>
-
 </div>
 <div class="prose reveal">
 <h3 data-edit-key="founder-name" data-edit-label="Naam initiatiefnemer">Daniel Stanneveld</h3>
 <p><strong data-edit-key="founder-role" data-edit-label="Rol initiatiefnemer">Initiatiefnemer van DE GROND.</strong></p>
 <p data-edit-key="founder-p1" data-edit-label="Wie wij zijn — alinea 1">
-            DE GROND wordt van onderop gebouwd. Niet als carrièreproject,
-            maar als een democratische beweging waarin inwoners zelf
-            verantwoordelijkheid nemen voor hun gemeenschap.
-          </p>
+DE GROND wordt van onderop gebouwd. Niet als carrièreproject,
+maar als een democratische beweging waarin inwoners zelf
+verantwoordelijkheid nemen voor hun gemeenschap.
+</p>
 <p data-edit-key="founder-p2" data-edit-label="Wie wij zijn — alinea 2">
-            We geloven dat politiek tegelijk menselijk én weerbaar kan zijn:
-            vrijheid met verantwoordelijkheid, een sterke rechtsstaat,
-            eerlijke samenwerking en niemand afschrijven.
-          </p>
+We geloven dat politiek tegelijk menselijk én weerbaar kan zijn:
+vrijheid met verantwoordelijkheid, een sterke rechtsstaat,
+eerlijke samenwerking en niemand afschrijven.
+</p>
 <p data-edit-key="founder-p3" data-edit-label="Wie wij zijn — alinea 3">
-            Stadskanaal is waar we beginnen. Hier leggen we de eerste wortels.
-          </p>
+Stadskanaal is waar we beginnen. Hier leggen we de eerste wortels.
+</p>
 </div>
 </div>
 </section>
-<!-- QUOTE -->
 <section class="section quote-section" data-edit-group="Citaat">
 <div class="container reveal">
 <blockquote data-edit-key="quote-main" data-edit-label="Citaat">
-          “Politiek begint niet bij een zetel. Het begint wanneer gewone mensen besluiten dat wegkijken geen optie meer is.”
-        </blockquote>
+“Politiek begint niet bij een zetel. Het begint wanneer gewone mensen besluiten dat wegkijken geen optie meer is.”
+</blockquote>
 </div>
 </section>
-<!-- =========================================================
-         VEELGESTELDE VRAGEN
-         ========================================================= -->
 <section class="section" data-edit-group="Veelgestelde vragen" id="vragen">
 <div class="container faq-grid">
 <div class="section-heading reveal">
@@ -303,35 +215,34 @@
 <details>
 <summary data-edit-key="faq-1-q" data-edit-label="Vraag 1">Is DE GROND links of rechts?</summary>
 <p data-edit-key="faq-1-a" data-edit-label="Antwoord 1">
-              DE GROND is sociaal-liberaal en patriottisch: vrijheid én bestaanszekerheid,
-              een sterke rechtsstaat én een sterke landsverdediging.
-            </p>
+DE GROND is sociaal-liberaal en patriottisch: vrijheid én bestaanszekerheid,
+een sterke rechtsstaat én een sterke landsverdediging.
+</p>
 </details>
 <details>
 <summary data-edit-key="faq-2-q" data-edit-label="Vraag 2">Kan ik nu al officieel lid worden?</summary>
 <p data-edit-key="faq-2-a" data-edit-label="Antwoord 2">
-              Deze gratis website verzamelt nog geen officiële ledenadministratie of betalingen.
-              Je kunt wel veilig je interesse kenbaar maken via je eigen e-mailprogramma.
-            </p>
+Deze gratis website verzamelt nog geen officiële ledenadministratie of betalingen.
+Je kunt wel veilig je interesse kenbaar maken via je eigen e-mailprogramma.
+</p>
 </details>
 <details>
 <summary data-edit-key="faq-3-q" data-edit-label="Vraag 3">Waarom nog geen online betaling?</summary>
 <p data-edit-key="faq-3-a" data-edit-label="Antwoord 3">
-              Een betrouwbare ledenadministratie vereist beveiligde opslag, juridische inrichting
-              en een betaalprovider. Dat kan later worden gekoppeld, maar is niet volledig gratis.
-            </p>
+Een betrouwbare ledenadministratie vereist beveiligde opslag, juridische inrichting
+en een betaalprovider. Dat kan later worden gekoppeld, maar is niet volledig gratis.
+</p>
 </details>
 <details>
 <summary data-edit-key="faq-4-q" data-edit-label="Vraag 4">Hoe kan ik meehelpen?</summary>
 <p data-edit-key="faq-4-a" data-edit-label="Antwoord 4">
-              Als medegrondlegger, vrijwilliger, inhoudelijk denker, campagnebouwer of kritische meelezer.
-              Een beweging heeft geen klapvee nodig, maar mensen met geweten en initiatief.
-            </p>
+Als medegrondlegger, vrijwilliger, inhoudelijk denker, campagnebouwer of kritische meelezer.
+Een beweging heeft geen klapvee nodig, maar mensen met geweten en initiatief.
+</p>
 </details>
 </div>
 </div>
 </section>
-<!-- CALL TO ACTION -->
 <section class="cta-section" data-edit-group="Oproep">
 <div class="container cta-card reveal">
 <div>
@@ -342,9 +253,6 @@
 </div>
 </section>
 </main>
-<!-- =========================================================
-       FOOTER
-       ========================================================= -->
 <footer class="site-footer" data-edit-group="Footer">
 <div class="container footer-grid">
 <div>
@@ -372,31 +280,27 @@
 </div>
 </div>
 </footer>
-<!-- =========================================================
-       DOE MEE-VENSTER
-       script.js regelt het openen, sluiten en versturen.
-       ========================================================= -->
 <dialog aria-labelledby="join-title" class="modal" data-edit-group="Doe mee-venster" id="join-modal">
 <button aria-label="Sluiten" class="modal-close" type="button">×</button>
 <div class="modal-content">
 <p class="eyebrow" data-edit-key="join-eyebrow" data-edit-label="Doe mee — kleine titel">Word medegrondlegger</p>
 <h2 data-edit-key="join-title" data-edit-label="Doe mee — titel" id="join-title">Laat weten hoe jij wilt bijdragen.</h2>
 <p class="modal-note" data-edit-key="join-note" data-edit-label="Doe mee — uitleg">
-        Je gegevens worden niet op deze website opgeslagen.
-        Na verzenden opent je eigen e-mailprogramma met een vooraf ingevuld bericht.
-      </p>
+Je gegevens worden niet op deze website opgeslagen.
+Na verzenden opent je eigen e-mailprogramma met een vooraf ingevuld bericht.
+</p>
 <form id="join-form">
 <label>
-          Naam
-          <input autocomplete="name" maxlength="80" name="name" required=""/>
+Naam
+<input autocomplete="name" maxlength="80" name="name" required=""/>
 </label>
 <label>
-          E-mailadres
-          <input autocomplete="email" maxlength="120" name="email" required="" type="email"/>
+E-mailadres
+<input autocomplete="email" maxlength="120" name="email" required="" type="email"/>
 </label>
 <label>
-          Ik wil bijdragen als
-          <select name="role" required="">
+Ik wil bijdragen als
+<select name="role" required="">
 <option value="">Maak een keuze</option>
 <option>Medegrondlegger</option>
 <option>Vrijwilliger</option>
@@ -406,8 +310,8 @@
 </select>
 </label>
 <label>
-          Mijn bericht
-          <textarea maxlength="600" name="message" placeholder="Vertel kort wat je aanspreekt of wat je kunt bijdragen." rows="4"></textarea>
+Mijn bericht
+<textarea maxlength="600" name="message" placeholder="Vertel kort wat je aanspreekt of wat je kunt bijdragen." rows="4"></textarea>
 </label>
 <label class="check-label">
 <input name="consent" required="" type="checkbox"/>
@@ -417,7 +321,6 @@
 </form>
 </div>
 </dialog>
-<!-- PRIVACY / COOKIES-VENSTER -->
 <dialog aria-labelledby="info-title" class="modal text-modal" id="info-modal">
 <button aria-label="Sluiten" class="modal-close" type="button">×</button>
 <div class="modal-content">
@@ -427,443 +330,9 @@
 </dialog>
 <noscript>
 <p class="noscript">
-      JavaScript staat uit. De inhoud blijft leesbaar, maar het menu en contactvenster werken dan niet.
-    </p>
+JavaScript staat uit. De inhoud blijft leesbaar, maar het menu en contactvenster werken dan niet.
+</p>
 </noscript>
-<script src="script.js"></script><script id="dg-admin-script">
-(() => {
-  'use strict';
-
-  const params = new URLSearchParams(window.location.search);
-  const beheerActief = params.get('beheer') === '1' || window.location.hash === '#beheer';
-  if (!beheerActief) return;
-
-  document.documentElement.dataset.beheer = 'actief';
-  console.info('DE GROND beheerstand actief');
-
-  const DRAFT_KEY = 'dgWebsiteDraftV2';
-  const GITHUB_KEY = 'dgGithubSettingsV1';
-  const API_VERSION = '2026-03-10';
-  let githubToken = '';
-  let publishAfterSettings = false;
-  let saveTimer = null;
-
-  const editableNodes = [...document.querySelectorAll('[data-edit-key]')];
-  const entries = [];
-  const byKey = new Map();
-
-  const cleanText = (el) => (el.textContent || '').replace(/\s+/g, ' ').trim();
-  const nodesFor = (key) => editableNodes.filter((el) => el.dataset.editKey === key);
-
-  editableNodes.forEach((el) => {
-    const key = el.dataset.editKey;
-    if (byKey.has(key)) return;
-    const group = el.closest('[data-edit-group]')?.dataset.editGroup || 'Overig';
-    const label = el.dataset.editLabel || cleanText(el).slice(0, 72) || key;
-    const entry = { key, group, label, first: el };
-    byKey.set(key, entry);
-    entries.push(entry);
-  });
-
-  const root = document.createElement('div');
-  root.id = 'dg-editor-root';
-  root.setAttribute('data-dg-runtime', 'true');
-  root.innerHTML = `
-    <div class="dg-admin-pill">
-      <span>✏️ Beheerstand</span>
-      <button type="button" id="dg-open-editor">Teksten bewerken</button>
-    </div>
-
-    <aside class="dg-editor-panel" id="dg-editor-panel" aria-label="Website teksten bewerken">
-      <div class="dg-editor-head">
-        <div class="dg-editor-head-top">
-          <div>
-            <h2 class="dg-editor-title">Teksten bewerken</h2>
-            <p class="dg-editor-sub">Verander de tekst hier. Je ziet de wijziging meteen op de pagina.</p>
-          </div>
-          <button class="dg-icon-btn" type="button" id="dg-close-editor" aria-label="Editor sluiten">×</button>
-        </div>
-        <input class="dg-editor-search" id="dg-editor-search" type="search" placeholder="Zoek een tekst of onderdeel…" autocomplete="off">
-      </div>
-      <div class="dg-editor-body" id="dg-editor-body"></div>
-      <div class="dg-editor-actions">
-        <button class="dg-action" type="button" id="dg-save-draft">Concept bewaren</button>
-        <button class="dg-action" type="button" id="dg-download">Backup downloaden</button>
-        <button class="dg-action" type="button" id="dg-settings-button">GitHub instellen</button>
-        <button class="dg-action dg-danger" type="button" id="dg-reset">Concept wissen</button>
-        <button class="dg-action dg-primary" type="button" id="dg-publish">🚀 Publiceer naar GitHub</button>
-      </div>
-    </aside>
-
-    <div class="dg-settings-backdrop" id="dg-settings-backdrop" aria-hidden="true">
-      <div class="dg-settings" role="dialog" aria-modal="true" aria-labelledby="dg-settings-title">
-        <h2 id="dg-settings-title">GitHub koppelen</h2>
-        <p>Deze gegevens zijn nodig om jouw <strong>index.html</strong> rechtstreeks vanuit de website bij te werken. Alleen eigenaar, repository, branch en pad worden op dit apparaat onthouden.</p>
-        <div class="dg-settings-grid">
-          <label>GitHub gebruikersnaam / organisatie
-            <input id="dg-gh-owner" autocomplete="off" placeholder="bijv. danielstanneveld">
-          </label>
-          <label>Repository
-            <input id="dg-gh-repo" autocomplete="off" placeholder="bijv. de-grond-website">
-          </label>
-          <label>Branch
-            <input id="dg-gh-branch" autocomplete="off" value="main">
-          </label>
-          <label>Bestandspad
-            <input id="dg-gh-path" autocomplete="off" value="index.html">
-          </label>
-          <label class="dg-full">Fine-grained GitHub token
-            <input id="dg-gh-token" type="password" autocomplete="new-password" spellcheck="false" placeholder="github_pat_…">
-          </label>
-        </div>
-        <p class="dg-small-note">🔐 Het token wordt <strong>niet opgeslagen</strong> in localStorage of in je websitebestand. Het blijft alleen in het geheugen zolang deze pagina openstaat. Geef het token alleen toegang tot deze repository met <strong>Contents: Read and write</strong>.</p>
-        <div class="dg-settings-actions">
-          <button class="dg-action" type="button" id="dg-settings-cancel">Annuleren</button>
-          <button class="dg-action dg-primary" type="button" id="dg-settings-save">Opslaan en doorgaan</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="dg-toast" id="dg-toast" role="status" aria-live="polite"></div>
-  `;
-  document.body.appendChild(root);
-
-  const $ = (id) => document.getElementById(id);
-  const panel = $('dg-editor-panel');
-  const body = $('dg-editor-body');
-  const search = $('dg-editor-search');
-  const backdrop = $('dg-settings-backdrop');
-  const toast = $('dg-toast');
-
-  function toastMessage(message, duration = 3200) {
-    toast.textContent = message;
-    toast.classList.add('dg-show');
-    window.clearTimeout(toastMessage.timer);
-    toastMessage.timer = window.setTimeout(() => toast.classList.remove('dg-show'), duration);
-  }
-
-  function groupEntries() {
-    const groups = new Map();
-    entries.forEach((entry) => {
-      if (!groups.has(entry.group)) groups.set(entry.group, []);
-      groups.get(entry.group).push(entry);
-    });
-    return groups;
-  }
-
-  function currentValue(key) {
-    const first = nodesFor(key)[0];
-    return first ? cleanText(first) : '';
-  }
-
-  function applyValue(key, value) {
-    nodesFor(key).forEach((el) => { el.textContent = value; });
-  }
-
-  function collectValues() {
-    const out = {};
-    entries.forEach((entry) => { out[entry.key] = currentValue(entry.key); });
-    return out;
-  }
-
-  function saveDraft(silent = false) {
-    try {
-      localStorage.setItem(DRAFT_KEY, JSON.stringify(collectValues()));
-      if (!silent) toastMessage('✅ Concept bewaard op dit apparaat.');
-    } catch (err) {
-      if (!silent) toastMessage('Kon het concept niet lokaal bewaren.');
-    }
-  }
-
-  function scheduleDraftSave() {
-    window.clearTimeout(saveTimer);
-    saveTimer = window.setTimeout(() => saveDraft(true), 450);
-  }
-
-  function loadDraft() {
-    try {
-      const raw = localStorage.getItem(DRAFT_KEY);
-      if (!raw) return;
-      const draft = JSON.parse(raw);
-      Object.entries(draft).forEach(([key, value]) => {
-        if (byKey.has(key) && typeof value === 'string') applyValue(key, value);
-      });
-      toastMessage('📝 Je lokale concept is hersteld.', 2300);
-    } catch (_) {}
-  }
-
-  function renderFields() {
-    body.innerHTML = '';
-    groupEntries().forEach((groupItems, groupName) => {
-      const section = document.createElement('section');
-      section.className = 'dg-group';
-      section.dataset.group = groupName.toLowerCase();
-
-      const h = document.createElement('h3');
-      h.className = 'dg-group-title';
-      h.textContent = groupName;
-      section.appendChild(h);
-
-      groupItems.forEach((entry) => {
-        const wrap = document.createElement('div');
-        wrap.className = 'dg-field';
-        wrap.dataset.key = entry.key;
-        wrap.dataset.search = `${groupName} ${entry.label} ${currentValue(entry.key)}`.toLowerCase();
-
-        const label = document.createElement('label');
-        label.htmlFor = `dg-field-${entry.key}`;
-        label.textContent = entry.label;
-
-        const textarea = document.createElement('textarea');
-        textarea.id = `dg-field-${entry.key}`;
-        textarea.value = currentValue(entry.key);
-        textarea.rows = Math.min(6, Math.max(2, Math.ceil(textarea.value.length / 55)));
-        textarea.addEventListener('input', () => {
-          applyValue(entry.key, textarea.value.trim());
-          wrap.dataset.search = `${groupName} ${entry.label} ${textarea.value}`.toLowerCase();
-          scheduleDraftSave();
-        });
-        textarea.addEventListener('focus', () => highlight(entry.first));
-        textarea.addEventListener('blur', () => unhighlight(entry.first));
-
-        const jump = document.createElement('button');
-        jump.type = 'button';
-        jump.className = 'dg-jump';
-        jump.textContent = '↗ Toon op pagina';
-        jump.addEventListener('click', () => {
-          panel.classList.remove('dg-open');
-          window.setTimeout(() => {
-            entry.first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            highlight(entry.first);
-            window.setTimeout(() => unhighlight(entry.first), 1800);
-          }, 180);
-        });
-
-        wrap.append(label, textarea, jump);
-        section.appendChild(wrap);
-      });
-      body.appendChild(section);
-    });
-  }
-
-  function highlight(el) { if (el) el.classList.add('dg-highlight'); }
-  function unhighlight(el) { if (el) el.classList.remove('dg-highlight'); }
-
-  function filterFields() {
-    const q = search.value.trim().toLowerCase();
-    body.querySelectorAll('.dg-field').forEach((field) => {
-      field.hidden = !!q && !field.dataset.search.includes(q);
-    });
-    body.querySelectorAll('.dg-group').forEach((groupEl) => {
-      const anyVisible = [...groupEl.querySelectorAll('.dg-field')].some((f) => !f.hidden);
-      groupEl.hidden = !anyVisible;
-    });
-  }
-
-  function resetRuntimeStateOnClone(clone) {
-    clone.querySelector('#dg-editor-root')?.remove();
-    clone.querySelectorAll('.dg-highlight').forEach((el) => el.classList.remove('dg-highlight'));
-    clone.querySelectorAll('.reveal.visible').forEach((el) => el.classList.remove('visible'));
-    clone.querySelectorAll('dialog[open]').forEach((el) => el.removeAttribute('open'));
-    clone.querySelector('#site-menu')?.classList.remove('open');
-    const menuButton = clone.querySelector('.menu-button');
-    if (menuButton) menuButton.setAttribute('aria-expanded', 'false');
-    clone.querySelector('body')?.classList.remove('menu-open', 'modal-open');
-    clone.querySelector('body')?.removeAttribute('style');
-    const year = clone.querySelector('#year');
-    if (year) year.textContent = '';
-    const infoBody = clone.querySelector('#info-body');
-    if (infoBody) infoBody.innerHTML = '';
-    return clone;
-  }
-
-  function serializePage() {
-    const clone = resetRuntimeStateOnClone(document.documentElement.cloneNode(true));
-    return '<!doctype html>\n' + clone.outerHTML + '\n';
-  }
-
-  function downloadHtml() {
-    saveDraft(true);
-    const blob = new Blob([serializePage()], { type: 'text/html;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'index.html';
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
-    toastMessage('⬇️ Backup index.html gedownload.');
-  }
-
-  function getGithubSettings() {
-    try {
-      return { branch: 'main', path: 'index.html', ...JSON.parse(localStorage.getItem(GITHUB_KEY) || '{}') };
-    } catch (_) {
-      return { owner: '', repo: '', branch: 'main', path: 'index.html' };
-    }
-  }
-
-  function openSettings(publishAfter = false) {
-    publishAfterSettings = publishAfter;
-    const s = getGithubSettings();
-    $('dg-gh-owner').value = s.owner || '';
-    $('dg-gh-repo').value = s.repo || '';
-    $('dg-gh-branch').value = s.branch || 'main';
-    $('dg-gh-path').value = s.path || 'index.html';
-    $('dg-gh-token').value = githubToken || '';
-    backdrop.classList.add('dg-open');
-    backdrop.setAttribute('aria-hidden', 'false');
-    window.setTimeout(() => $('dg-gh-owner').focus(), 50);
-  }
-
-  function closeSettings() {
-    backdrop.classList.remove('dg-open');
-    backdrop.setAttribute('aria-hidden', 'true');
-  }
-
-  function saveSettings() {
-    const settings = {
-      owner: $('dg-gh-owner').value.trim(),
-      repo: $('dg-gh-repo').value.trim(),
-      branch: $('dg-gh-branch').value.trim() || 'main',
-      path: $('dg-gh-path').value.trim() || 'index.html'
-    };
-    const token = $('dg-gh-token').value.trim();
-    if (!settings.owner || !settings.repo) {
-      toastMessage('Vul je GitHub gebruikersnaam/organisatie en repository in.');
-      return null;
-    }
-    if (token) githubToken = token;
-    localStorage.setItem(GITHUB_KEY, JSON.stringify(settings));
-    closeSettings();
-    toastMessage('✅ GitHub-instellingen bewaard. Token blijft alleen in deze pagina.');
-    return settings;
-  }
-
-  function utf8ToBase64(text) {
-    const bytes = new TextEncoder().encode(text);
-    let binary = '';
-    const chunkSize = 0x8000;
-    for (let i = 0; i < bytes.length; i += chunkSize) {
-      binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
-    }
-    return btoa(binary);
-  }
-
-  function ghHeaders() {
-    return {
-      'Accept': 'application/vnd.github+json',
-      'Authorization': `Bearer ${githubToken}`,
-      'X-GitHub-Api-Version': API_VERSION,
-      'Content-Type': 'application/json'
-    };
-  }
-
-  function encodePath(path) {
-    return path.split('/').filter(Boolean).map(encodeURIComponent).join('/');
-  }
-
-  async function publishToGithub() {
-    const settings = getGithubSettings();
-    if (!settings.owner || !settings.repo || !githubToken) {
-      openSettings(true);
-      return;
-    }
-
-    const button = $('dg-publish');
-    const oldText = button.textContent;
-    button.disabled = true;
-    button.textContent = 'Publiceren…';
-    toastMessage('GitHub wordt bijgewerkt…', 1800);
-
-    try {
-      saveDraft(true);
-      const owner = encodeURIComponent(settings.owner);
-      const repo = encodeURIComponent(settings.repo);
-      const path = encodePath(settings.path || 'index.html');
-      const branch = settings.branch || 'main';
-      const endpoint = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
-
-      const getResponse = await fetch(`${endpoint}?ref=${encodeURIComponent(branch)}`, {
-        method: 'GET', headers: ghHeaders()
-      });
-
-      if (getResponse.status === 401 || getResponse.status === 403) {
-        throw new Error('GitHub weigert het token. Controleer of het token geldig is en Contents: Read and write heeft.');
-      }
-      if (getResponse.status === 404) {
-        throw new Error('Repository, branch of index.html niet gevonden. Controleer je GitHub-instellingen.');
-      }
-      if (!getResponse.ok) {
-        throw new Error(`GitHub kon index.html niet ophalen (HTTP ${getResponse.status}).`);
-      }
-
-      const fileInfo = await getResponse.json();
-      const html = serializePage();
-      const payload = {
-        message: 'Website teksten bijgewerkt via DE GROND beheer',
-        content: utf8ToBase64(html),
-        sha: fileInfo.sha,
-        branch
-      };
-
-      const putResponse = await fetch(endpoint, {
-        method: 'PUT', headers: ghHeaders(), body: JSON.stringify(payload)
-      });
-      const result = await putResponse.json().catch(() => ({}));
-
-      if (!putResponse.ok) {
-        const detail = result?.message ? ` ${result.message}` : '';
-        throw new Error(`Publiceren mislukt (HTTP ${putResponse.status}).${detail}`);
-      }
-
-      localStorage.removeItem(DRAFT_KEY);
-      const commitUrl = result?.commit?.html_url;
-      toastMessage('✅ GitHub bijgewerkt. Cloudflare kan nu automatisch opnieuw deployen.', 5200);
-      if (commitUrl) console.info('DE GROND commit:', commitUrl);
-    } catch (err) {
-      console.error(err);
-      toastMessage(`❌ ${err.message || 'Publiceren mislukt.'}`, 6500);
-    } finally {
-      button.disabled = false;
-      button.textContent = oldText;
-    }
-  }
-
-  $('dg-open-editor').addEventListener('click', () => panel.classList.add('dg-open'));
-  $('dg-close-editor').addEventListener('click', () => panel.classList.remove('dg-open'));
-  search.addEventListener('input', filterFields);
-  $('dg-save-draft').addEventListener('click', () => saveDraft(false));
-  $('dg-download').addEventListener('click', downloadHtml);
-  $('dg-settings-button').addEventListener('click', () => openSettings(false));
-  $('dg-publish').addEventListener('click', publishToGithub);
-  $('dg-reset').addEventListener('click', () => {
-    if (!window.confirm('Je lokale concept wissen en de live versie opnieuw laden?')) return;
-    localStorage.removeItem(DRAFT_KEY);
-    window.location.reload();
-  });
-  $('dg-settings-cancel').addEventListener('click', () => { publishAfterSettings = false; closeSettings(); });
-  $('dg-settings-save').addEventListener('click', () => {
-    const s = saveSettings();
-    if (s && publishAfterSettings) {
-      publishAfterSettings = false;
-      window.setTimeout(publishToGithub, 80);
-    }
-  });
-  backdrop.addEventListener('click', (event) => {
-    if (event.target === backdrop) { publishAfterSettings = false; closeSettings(); }
-  });
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      if (backdrop.classList.contains('dg-open')) { publishAfterSettings = false; closeSettings(); }
-      else panel.classList.remove('dg-open');
-    }
-  });
-
-  loadDraft();
-  renderFields();
-})();
-</script>
+<script src="script.js"></script><script src="admin.js"></script>
 </body>
 </html>
