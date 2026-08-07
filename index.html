@@ -1,338 +1,753 @@
+
+
+
+
+
 <!doctype html>
 <html lang="nl">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<meta content="#111B29" name="theme-color"/>
-<title>DE GROND — Vrij. Nuchter. Weerbaar.</title>
-<meta content="DE GROND is een democratische beweging uit Stadskanaal. Vrij. Nuchter. Weerbaar. Geen kind buitenspel. Niemand door het ijs. Macht onder recht." name="description"/>
-<link href="https://de-grond-website.pages.dev/" rel="canonical"/>
-<meta content="DE GROND — Vrij. Nuchter. Weerbaar." property="og:title"/>
-<meta content="Een menselijk Nederland met ruggengraat. Geen kind buitenspel. Niemand mag door het ijs zakken." property="og:description"/>
-<meta content="website" property="og:type"/>
-<meta content="https://de-grond-website.pages.dev/" property="og:url"/>
-<meta content="https://de-grond-website.pages.dev/logo.png" property="og:image"/>
-<link href="styles.css" rel="stylesheet"/>
-<link href="logo.png" rel="icon" type="image/png"/>
-<link href="admin.css" rel="stylesheet"/>
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "Organization",
-"name": "DE GROND",
-"description": "Democratische beweging — Vrij. Nuchter. Weerbaar.",
-"url": "https://de-grond-website.pages.dev/",
-"logo": "https://de-grond-website.pages.dev/logo.png",
-"founder": {
-"@type": "Person",
-"name": "Daniel Stanneveld"
-}
-}
-</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>DE GROND | Trots op Stadskanaal</title>
+  <meta name="description" content="DE GROND is een democratische beweging voor een vrij, menselijk, eerlijk en weerbaar Stadskanaal. Geen kind buitenspel. Niemand zakt door het ijs.">
+  <meta name="theme-color" content="#0A1018">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:title" content="DE GROND | Trots op Stadskanaal">
+  <meta property="og:description" content="Vrij. Nuchter. Weerbaar. Samen bouwen aan Stadskanaal 2030.">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="nl_NL">
+
+  <style>
+    :root {
+      --bg: #0A1018;
+      --bg-soft: #111B29;
+      --panel: #151719;
+      --slate: #263343;
+      --gold: #B28A52;
+      --brass: #967043;
+      --gold-light: #C8A36A;
+      --text: #F5F1E8;
+      --muted: #C8C2B7;
+      --line: rgba(200,163,106,.20);
+      --white: #FFFFFF;
+      --radius: 22px;
+      --shadow: 0 18px 60px rgba(0,0,0,.28);
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 85% 10%, rgba(178,138,82,.10), transparent 26rem),
+        linear-gradient(180deg, #0A1018 0%, #111B29 46%, #0A1018 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+
+    .container {
+      width: min(calc(100% - 36px), var(--max));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 9999;
+      background: var(--gold-light);
+      color: var(--bg);
+      padding: .8rem 1rem;
+      font-weight: 800;
+    }
+    .skip-link:focus { left: 1rem; top: 1rem; }
+
+    /* HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(200,163,106,.12);
+      background: rgba(10,16,24,.84);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-width: max-content;
+    }
+
+    .brand img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+    }
+
+    .brand-copy { line-height: 1; }
+    .brand-name {
+      display: block;
+      font-weight: 950;
+      letter-spacing: .08em;
+      font-size: 1.05rem;
+    }
+    .brand-sub {
+      display: block;
+      margin-top: 5px;
+      color: var(--gold-light);
+      font-size: .69rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: .94rem;
+      font-weight: 700;
+    }
+    .nav-links a:not(.btn) { color: #E8E4DC; }
+    .nav-links a:not(.btn):hover { color: var(--gold-light); }
+
+    .menu-toggle {
+      display: none;
+      appearance: none;
+      border: 1px solid var(--line);
+      background: var(--bg-soft);
+      color: var(--text);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: .78rem 1.15rem;
+      border-radius: 999px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #111;
+      box-shadow: 0 10px 30px rgba(178,138,82,.20);
+    }
+    .btn-secondary {
+      border: 1px solid rgba(200,163,106,.42);
+      background: rgba(255,255,255,.02);
+      color: var(--text);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      place-items: center;
+      padding: 78px 0 64px;
+      position: relative;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .78rem;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    h1, h2, h3 { margin: 0; line-height: 1.03; }
+    h1 {
+      max-width: 850px;
+      font-size: clamp(3.2rem, 8vw, 7.2rem);
+      letter-spacing: -.055em;
+      font-weight: 950;
+      text-wrap: balance;
+    }
+    h1 span { color: var(--gold-light); }
+
+    .hero-lead {
+      max-width: 760px;
+      margin: 26px 0 0;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2.2vw, 1.36rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
+
+    .hero-note {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 22px;
+      color: #AFA99F;
+      font-size: .91rem;
+    }
+    .hero-note strong { color: var(--text); }
+
+    .emblem-card {
+      position: relative;
+      min-height: 410px;
+      border: 1px solid var(--line);
+      border-radius: 34px;
+      background:
+        linear-gradient(145deg, rgba(200,163,106,.06), transparent 45%),
+        rgba(21,23,25,.62);
+      box-shadow: var(--shadow);
+      display: grid;
+      place-items: center;
+      padding: 44px;
+      overflow: hidden;
+    }
+    .emblem-card::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      border: 1px solid rgba(200,163,106,.16);
+      box-shadow: 0 0 0 38px rgba(200,163,106,.025), 0 0 0 76px rgba(200,163,106,.015);
+    }
+    .emblem-card img {
+      position: relative;
+      z-index: 2;
+      width: min(290px, 85%);
+      filter: drop-shadow(0 18px 30px rgba(0,0,0,.38));
+    }
+    .emblem-fallback {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .emblem-fallback strong {
+      display: block;
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: .08em;
+    }
+    .emblem-fallback span {
+      display: block;
+      margin-top: 8px;
+      color: var(--gold-light);
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      font-weight: 900;
+    }
+
+    /* SECTIONS */
+    section { padding: 96px 0; }
+    .section-kicker {
+      color: var(--gold-light);
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      font-size: .78rem;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+    .section-title {
+      max-width: 820px;
+      font-size: clamp(2.25rem, 5vw, 4.7rem);
+      letter-spacing: -.045em;
+      text-wrap: balance;
+    }
+    .section-intro {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .manifest {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.015);
+    }
+
+    .manifest-grid {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .value-card,
+    .theme-card,
+    .principle-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(21,23,25,.55);
+      padding: 26px;
+    }
+    .value-card strong {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--gold-light);
+    }
+    .value-card p,
+    .theme-card p,
+    .principle-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    /* THEMES */
+    .themes-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+      margin-top: 46px;
+    }
+    .theme-card { padding: 34px; }
+    .theme-number {
+      display: inline-grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      background: rgba(200,163,106,.11);
+      color: var(--gold-light);
+      font-weight: 950;
+    }
+    .theme-card h3 {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      margin-bottom: 14px;
+    }
+    .theme-card ul {
+      margin: 22px 0 0;
+      padding-left: 1.15rem;
+      color: #DDD7CC;
+    }
+    .theme-card li + li { margin-top: 9px; }
+
+    /* PRINCIPLES */
+    .principles {
+      background:
+        linear-gradient(180deg, rgba(200,163,106,.035), transparent 28%),
+        var(--bg-soft);
+    }
+    .principles-grid {
+      margin-top: 46px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .principle-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+    }
+    .principle-card .icon {
+      font-size: 1.5rem;
+      margin-bottom: 17px;
+    }
+
+    /* QUOTE */
+    .quote-section { padding: 88px 0; }
+    .quote {
+      margin: 0;
+      max-width: 1000px;
+      font-size: clamp(2rem, 5vw, 4.3rem);
+      line-height: 1.08;
+      font-weight: 900;
+      letter-spacing: -.035em;
+      color: var(--text);
+    }
+    .quote span { color: var(--gold-light); }
+
+    /* JOIN */
+    .join-wrap {
+      border: 1px solid rgba(200,163,106,.25);
+      border-radius: 30px;
+      padding: clamp(32px, 6vw, 70px);
+      background:
+        radial-gradient(circle at 100% 0, rgba(200,163,106,.12), transparent 24rem),
+        linear-gradient(145deg, rgba(38,51,67,.74), rgba(10,16,24,.88));
+      box-shadow: var(--shadow);
+    }
+    .join-grid {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 40px;
+      align-items: end;
+    }
+    .join-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .join-actions .btn { width: 100%; }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 34px 0 44px;
+      color: #AFA99F;
+      font-size: .92rem;
+    }
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-links a:hover { color: var(--gold-light); }
+
+    /* SMALL ENTRANCE ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 920px) {
+      .hero { min-height: auto; }
+      .hero-inner,
+      .join-grid { grid-template-columns: 1fr; }
+      .emblem-card { min-height: 320px; }
+      .manifest-grid { grid-template-columns: repeat(2, 1fr); }
+      .principles-grid { grid-template-columns: 1fr; }
+
+      .menu-toggle { display: inline-grid; place-items: center; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 18px;
+        right: 18px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: #0E1621;
+        box-shadow: var(--shadow);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a {
+        padding: 11px 12px;
+        border-radius: 10px;
+      }
+      .nav-links .btn { margin-top: 8px; }
+    }
+
+    @media (max-width: 650px) {
+      .container { width: min(calc(100% - 28px), var(--max)); }
+      section { padding: 72px 0; }
+      .hero { padding: 56px 0 46px; }
+      .hero-inner { gap: 34px; }
+      h1 { font-size: clamp(3rem, 17vw, 5.2rem); }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; }
+      .manifest-grid,
+      .themes-grid { grid-template-columns: 1fr; }
+      .value-card,
+      .theme-card,
+      .principle-card { padding: 23px; }
+      .emblem-card { min-height: 280px; padding: 30px; }
+      .brand-sub { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
 </head>
+
 <body>
-<a class="skip-link" href="#inhoud">Ga naar de inhoud</a>
-<header class="site-header" data-edit-group="Menu" id="top">
-<div class="container nav-wrap">
-<a aria-label="DE GROND, naar boven" class="brand" href="#top">
-<img alt="Logo DE GROND" height="72" src="logo.png" width="72"/>
-<span class="brand-text">
-<strong>DE GROND</strong>
-<small data-edit-key="brand-subtitle" data-edit-label="Ondertitel logo">Democratische beweging</small>
-</span>
-</a>
-<button aria-controls="site-menu" aria-expanded="false" class="menu-button" type="button">
-<span class="sr-only">Menu openen</span>
-<span></span><span></span><span></span>
-</button>
-<nav aria-label="Hoofdnavigatie" class="site-nav" id="site-menu">
-<a data-edit-key="nav-missie" data-edit-label="Menu: Missie" href="#missie">Missie</a>
-<a data-edit-key="nav-plannen" data-edit-label="Menu: Onze plannen" href="#speerpunten">Onze plannen</a>
-<a data-edit-key="nav-stadskanaal" data-edit-label="Menu: Stadskanaal 2030" href="#stadskanaal">Stadskanaal 2030</a>
-<a data-edit-key="nav-wie" data-edit-label="Menu: Wie wij zijn" href="#wie-wij-zijn">Wie wij zijn</a>
-<a data-edit-key="nav-vragen" data-edit-label="Menu: Vragen" href="#vragen">Vragen</a>
-<button class="button button-small join-trigger" data-edit-key="nav-doe-mee" data-edit-label="Menu: Doe mee-knop" type="button">Doe mee</button>
-</nav>
-</div>
-</header>
-<main id="inhoud">
-<section class="hero" data-edit-group="Startpagina">
-<div aria-hidden="true" class="hero-glow"></div>
-<div class="container hero-grid">
-<div class="hero-copy reveal">
-<p class="eyebrow" data-edit-key="hero-eyebrow" data-edit-label="Kleine tekst boven titel">Stadskanaal 2030</p>
-<h1><span class="dg-title-main" data-edit-key="hero-title-main" data-edit-label="Hoofdtitel — eerste deel">De wortels liggen hier.</span> <span data-edit-key="hero-title-accent" data-edit-label="Hoofdtitel — gouden deel">Nu bouwen we verder.</span></h1>
-<p class="hero-lead" data-edit-key="hero-lead" data-edit-label="Introductietekst">
-DE GROND begint in Stadskanaal. Vrij, nuchter en weerbaar.
-Geen kind buitenspel. Niemand door het ijs. Macht onder recht.
-</p>
-<div class="hero-actions">
-<button class="button join-trigger" data-edit-key="hero-primary-button" data-edit-label="Knop: Word medegrondlegger" type="button">Word medegrondlegger</button>
-<a class="button button-ghost" data-edit-key="hero-secondary-button" data-edit-label="Knop: Bekijk onze koers" href="#speerpunten">Bekijk onze koers</a>
-</div>
-<ul aria-label="Onze uitgangspunten" class="trust-row">
-<li data-edit-key="trust-1" data-edit-label="Uitgangspunt 1">Democratisch</li>
-<li data-edit-key="trust-2" data-edit-label="Uitgangspunt 2">Rechtsstatelijk</li>
-<li data-edit-key="trust-3" data-edit-label="Uitgangspunt 3">Geweldloos</li>
-</ul>
-</div>
-<aside aria-label="Kernbelofte" class="manifest-card reveal">
-<p class="manifest-number" data-edit-key="manifest-number" data-edit-label="Nummer kernbelofte">01</p>
-<h2><span data-edit-key="manifest-title-1" data-edit-label="Kernbelofte — regel 1">Sterk naar buiten.</span><br/><span data-edit-key="manifest-title-2" data-edit-label="Kernbelofte — regel 2">Menselijk naar binnen.</span></h2>
-<p data-edit-key="manifest-body" data-edit-label="Kernbelofte — uitleg">Een overheid die grenzen bewaakt, macht begrenst en mensen nooit tot dossier reduceert.</p>
-<div class="manifest-seal">
-<span data-edit-key="seal-1" data-edit-label="Kernwoord 1">Vrij</span>
-<span data-edit-key="seal-2" data-edit-label="Kernwoord 2">Nuchter</span>
-<span data-edit-key="seal-3" data-edit-label="Kernwoord 3">Weerbaar</span>
-</div>
-</aside>
-</div>
-</section>
-<section aria-label="Kernzinnen" class="ticker" data-edit-group="Kernzinnen">
-<div class="ticker-track">
-<span data-edit-key="ticker-1" data-edit-label="Kernzin 1">Laat je niet gek maken</span><i aria-hidden="true">✦</i>
-<span data-edit-key="ticker-2" data-edit-label="Kernzin 2">Niemand mag door het ijs zakken</span><i aria-hidden="true">✦</i>
-<span data-edit-key="ticker-3" data-edit-label="Kernzin 3">Zonder begrenzing wordt macht een beest</span><i aria-hidden="true">✦</i>
-<span data-edit-key="ticker-4" data-edit-label="Kernzin 4">Geen belofte. Beweging.</span><i aria-hidden="true">✦</i>
-</div>
-</section>
-<section class="section" data-edit-group="Missie" id="missie">
-<div class="container split">
-<div class="section-heading reveal">
-<p class="eyebrow" data-edit-key="mission-eyebrow" data-edit-label="Missie — kleine titel">Onze missie</p>
-<h2 data-edit-key="mission-title" data-edit-label="Missie — titel">Geen systeem boven de mens. Geen mens boven de wet.</h2>
-</div>
-<div class="prose reveal">
-<p data-edit-key="mission-p1" data-edit-label="Missie — alinea 1">
-Wij geloven in vrijheid met verantwoordelijkheid, menselijkheid met grenzen
-en samenwerking zonder bestuurlijke pap. Iedereen mag meewegen; niemand mag gijzelen.
-</p>
-<p data-edit-key="mission-p2" data-edit-label="Missie — alinea 2">
-DE GROND wil een overheid die problemen vroeg oplost, eerlijk gedrag sterker maakt
-dan crimineel overleven en mensen niet eerst volledig kapot laat gaan voordat hulp begint.
-</p>
-</div>
-</div>
-</section>
-<section class="section section-dark" data-edit-group="Onze plannen" id="speerpunten">
-<div class="container">
-<div class="section-heading centered reveal">
-<p class="eyebrow" data-edit-key="plans-eyebrow" data-edit-label="Plannen — kleine titel">Waar we voor staan</p>
-<h2 data-edit-key="plans-title" data-edit-label="Plannen — titel">Vier fundamenten. Eén menselijke rechtsstaat.</h2>
-</div>
-<div class="card-grid">
-<article class="policy-card reveal">
-<span aria-hidden="true" class="card-icon">♥</span>
-<p class="card-kicker" data-edit-key="plan-1-kicker" data-edit-label="Plan 1 — thema">Jeugd</p>
-<h3 data-edit-key="plan-1-title" data-edit-label="Plan 1 — titel">Geen kind buitenspel</h3>
-<p data-edit-key="plan-1-body" data-edit-label="Plan 1 — uitleg">Sport, mentale gezondheid en kansen mogen niet afhangen van de portemonnee of postcode van ouders.</p>
-</article>
-<article class="policy-card reveal">
-<span aria-hidden="true" class="card-icon">⌂</span>
-<p class="card-kicker" data-edit-key="plan-2-kicker" data-edit-label="Plan 2 — thema">Wonen</p>
-<h3 data-edit-key="plan-2-title" data-edit-label="Plan 2 — titel">Niemand door het ijs</h3>
-<p data-edit-key="plan-2-body" data-edit-label="Plan 2 — uitleg">Sneller bouwen, Housing First en één verantwoordelijke regisseur wanneer mensen dreigen vast te lopen.</p>
-</article>
-<article class="policy-card reveal">
-<span aria-hidden="true" class="card-icon">◆</span>
-<p class="card-kicker" data-edit-key="plan-3-kicker" data-edit-label="Plan 3 — thema">Veiligheid</p>
-<h3 data-edit-key="plan-3-title" data-edit-label="Plan 3 — titel">Waardigheidsstaat met tanden</h3>
-<p data-edit-key="plan-3-body" data-edit-label="Plan 3 — uitleg">Hard tegen geweld en ondermijning, menselijk tegen slachtoffers en streng op misbruik van overheidsmacht.</p>
-</article>
-<article class="policy-card reveal">
-<span aria-hidden="true" class="card-icon">◎</span>
-<p class="card-kicker" data-edit-key="plan-4-kicker" data-edit-label="Plan 4 — thema">Bestuur</p>
-<h3 data-edit-key="plan-4-title" data-edit-label="Plan 4 — titel">Macht onder recht</h3>
-<p data-edit-key="plan-4-body" data-edit-label="Plan 4 — uitleg">Transparante besluiten, onafhankelijke controle en echte invloed voor inwoners zonder eindeloos vergadercircus.</p>
-</article>
-</div>
-</div>
-</section>
-<section class="section stadskanaal" data-edit-group="Stadskanaal 2030" id="stadskanaal">
-<div class="container locality-grid">
-<div aria-hidden="true" class="locality-art reveal">
-<div class="sun"></div>
-<div class="water-tower"><span></span></div>
-<div class="canal"></div>
-<div class="bridge-shape"></div>
-</div>
-<div class="locality-copy reveal">
-<p class="eyebrow" data-edit-key="local-eyebrow" data-edit-label="Stadskanaal — kleine titel">Onze proeftuin</p>
-<h2 data-edit-key="local-title" data-edit-label="Stadskanaal — titel">Trots op Stadskanaal 💗</h2>
-<p data-edit-key="local-body" data-edit-label="Stadskanaal — tekst">
-Niet wachten tot Den Haag ineens wijs wordt. We beginnen lokaal:
-met sterke buurten, sport voor ieder kind, ruimte voor kleine ondernemers
-en een bestuur dat zichtbaar verantwoordelijkheid neemt.
-</p>
-<div class="locality-points">
-<div><strong data-edit-key="local-stat-1-number" data-edit-label="Blok 1 — getal">500</strong><span data-edit-key="local-stat-1-label" data-edit-label="Blok 1 — uitleg">euro sportpas als ambitie</span></div>
-<div><strong data-edit-key="local-stat-2-number" data-edit-label="Blok 2 — getal">72u</strong><span data-edit-key="local-stat-2-label" data-edit-label="Blok 2 — uitleg">voor een vaste casusregisseur</span></div>
-<div><strong data-edit-key="local-stat-3-number" data-edit-label="Blok 3 — getal">1</strong><span data-edit-key="local-stat-3-label" data-edit-label="Blok 3 — uitleg">gemeenschap die niemand afschrijft</span></div>
-</div>
-<button class="text-link join-trigger" data-edit-key="local-button" data-edit-label="Stadskanaal — oproepknop" type="button">Help de lokale beweging bouwen →</button>
-</div>
-</div>
-</section>
-<section class="section" data-edit-group="Wie wij zijn" id="wie-wij-zijn">
-<div class="container split">
-<div class="section-heading reveal">
-<p class="eyebrow" data-edit-key="who-eyebrow" data-edit-label="Wie wij zijn — kleine titel">Wie wij zijn</p>
-<h2 data-edit-key="who-title" data-edit-label="Wie wij zijn — titel">Politiek begint bij mensen, niet bij een partijmachine.</h2>
-</div>
-<div class="prose reveal">
-<h3 data-edit-key="founder-name" data-edit-label="Naam initiatiefnemer">Daniel Stanneveld</h3>
-<p><strong data-edit-key="founder-role" data-edit-label="Rol initiatiefnemer">Initiatiefnemer van DE GROND.</strong></p>
-<p data-edit-key="founder-p1" data-edit-label="Wie wij zijn — alinea 1">
-DE GROND wordt van onderop gebouwd. Niet als carrièreproject,
-maar als een democratische beweging waarin inwoners zelf
-verantwoordelijkheid nemen voor hun gemeenschap.
-</p>
-<p data-edit-key="founder-p2" data-edit-label="Wie wij zijn — alinea 2">
-We geloven dat politiek tegelijk menselijk én weerbaar kan zijn:
-vrijheid met verantwoordelijkheid, een sterke rechtsstaat,
-eerlijke samenwerking en niemand afschrijven.
-</p>
-<p data-edit-key="founder-p3" data-edit-label="Wie wij zijn — alinea 3">
-Stadskanaal is waar we beginnen. Hier leggen we de eerste wortels.
-</p>
-</div>
-</div>
-</section>
-<section class="section quote-section" data-edit-group="Citaat">
-<div class="container reveal">
-<blockquote data-edit-key="quote-main" data-edit-label="Citaat">
-“Politiek begint niet bij een zetel. Het begint wanneer gewone mensen besluiten dat wegkijken geen optie meer is.”
-</blockquote>
-</div>
-</section>
-<section class="section" data-edit-group="Veelgestelde vragen" id="vragen">
-<div class="container faq-grid">
-<div class="section-heading reveal">
-<p class="eyebrow" data-edit-key="faq-eyebrow" data-edit-label="Vragen — kleine titel">Veelgestelde vragen</p>
-<h2 data-edit-key="faq-title" data-edit-label="Vragen — titel">Nuchtere antwoorden, zonder Haagse rookmachine.</h2>
-</div>
-<div class="accordion reveal">
-<details>
-<summary data-edit-key="faq-1-q" data-edit-label="Vraag 1">Is DE GROND links of rechts?</summary>
-<p data-edit-key="faq-1-a" data-edit-label="Antwoord 1">
-DE GROND is sociaal-liberaal en patriottisch: vrijheid én bestaanszekerheid,
-een sterke rechtsstaat én een sterke landsverdediging.
-</p>
-</details>
-<details>
-<summary data-edit-key="faq-2-q" data-edit-label="Vraag 2">Kan ik nu al officieel lid worden?</summary>
-<p data-edit-key="faq-2-a" data-edit-label="Antwoord 2">
-Deze gratis website verzamelt nog geen officiële ledenadministratie of betalingen.
-Je kunt wel veilig je interesse kenbaar maken via je eigen e-mailprogramma.
-</p>
-</details>
-<details>
-<summary data-edit-key="faq-3-q" data-edit-label="Vraag 3">Waarom nog geen online betaling?</summary>
-<p data-edit-key="faq-3-a" data-edit-label="Antwoord 3">
-Een betrouwbare ledenadministratie vereist beveiligde opslag, juridische inrichting
-en een betaalprovider. Dat kan later worden gekoppeld, maar is niet volledig gratis.
-</p>
-</details>
-<details>
-<summary data-edit-key="faq-4-q" data-edit-label="Vraag 4">Hoe kan ik meehelpen?</summary>
-<p data-edit-key="faq-4-a" data-edit-label="Antwoord 4">
-Als medegrondlegger, vrijwilliger, inhoudelijk denker, campagnebouwer of kritische meelezer.
-Een beweging heeft geen klapvee nodig, maar mensen met geweten en initiatief.
-</p>
-</details>
-</div>
-</div>
-</section>
-<section class="cta-section" data-edit-group="Oproep">
-<div class="container cta-card reveal">
-<div>
-<p class="eyebrow" data-edit-key="cta-eyebrow" data-edit-label="Oproep — kleine titel">Geen belofte. Beweging.</p>
-<h2 data-edit-key="cta-title" data-edit-label="Oproep — titel">Bouw mee aan de grond onder onze voeten.</h2>
-</div>
-<button class="button button-light join-trigger" data-edit-key="cta-button" data-edit-label="Oproep — knop" type="button">Ik wil meedoen</button>
-</div>
-</section>
-</main>
-<footer class="site-footer" data-edit-group="Footer">
-<div class="container footer-grid">
-<div>
-<a class="footer-brand" href="#top">
-<img alt="Logo DE GROND" height="60" src="logo.png" width="60"/>
-<span class="brand-text">
-<strong>DE GROND</strong>
-<small data-edit-key="footer-subtitle" data-edit-label="Footer — slogan">Vrij. Nuchter. Weerbaar.</small>
-</span>
-</a>
-<p data-edit-key="footer-tagline" data-edit-label="Footer — beschrijving">Een democratische, rechtsstatelijke en geweldloze beweging.</p>
-</div>
-<div>
-<h3>Beweging</h3>
-<a data-edit-key="nav-missie" href="#missie">Missie</a>
-<a data-edit-key="nav-plannen" href="#speerpunten">Onze plannen</a>
-<a data-edit-key="nav-stadskanaal" href="#stadskanaal">Stadskanaal 2030</a>
-<a data-edit-key="nav-wie" href="#wie-wij-zijn">Wie wij zijn</a>
-</div>
-<div>
-<h3>Juridisch</h3>
-<button class="footer-link" id="privacy-open" type="button">Privacy</button>
-<button class="footer-link" id="cookies-open" type="button">Cookies</button>
-<p class="copyright">© <span id="year"></span> DE GROND</p>
-</div>
-</div>
-</footer>
-<dialog aria-labelledby="join-title" class="modal" data-edit-group="Doe mee-venster" id="join-modal">
-<button aria-label="Sluiten" class="modal-close" type="button">×</button>
-<div class="modal-content">
-<p class="eyebrow" data-edit-key="join-eyebrow" data-edit-label="Doe mee — kleine titel">Word medegrondlegger</p>
-<h2 data-edit-key="join-title" data-edit-label="Doe mee — titel" id="join-title">Laat weten hoe jij wilt bijdragen.</h2>
-<p class="modal-note" data-edit-key="join-note" data-edit-label="Doe mee — uitleg">
-Je gegevens worden niet op deze website opgeslagen.
-Na verzenden opent je eigen e-mailprogramma met een vooraf ingevuld bericht.
-</p>
-<form id="join-form">
-<label>
-Naam
-<input autocomplete="name" maxlength="80" name="name" required=""/>
-</label>
-<label>
-E-mailadres
-<input autocomplete="email" maxlength="120" name="email" required="" type="email"/>
-</label>
-<label>
-Ik wil bijdragen als
-<select name="role" required="">
-<option value="">Maak een keuze</option>
-<option>Medegrondlegger</option>
-<option>Vrijwilliger</option>
-<option>Inhoudelijk denker</option>
-<option>Campagnebouwer</option>
-<option>Ik weet het nog niet</option>
-</select>
-</label>
-<label>
-Mijn bericht
-<textarea maxlength="600" name="message" placeholder="Vertel kort wat je aanspreekt of wat je kunt bijdragen." rows="4"></textarea>
-</label>
-<label class="check-label">
-<input name="consent" required="" type="checkbox"/>
-<span>Ik kies er zelf voor om deze informatie per e-mail te versturen.</span>
-</label>
-<button class="button" data-edit-key="join-submit" data-edit-label="Doe mee — verzendknop" type="submit">Open mijn e-mail</button>
-</form>
-</div>
-</dialog>
-<dialog aria-labelledby="info-title" class="modal text-modal" id="info-modal">
-<button aria-label="Sluiten" class="modal-close" type="button">×</button>
-<div class="modal-content">
-<h2 id="info-title">Privacy</h2>
-<div id="info-body"></div>
-</div>
-</dialog>
-<noscript>
-<p class="noscript">
-JavaScript staat uit. De inhoud blijft leesbaar, maar het menu en contactvenster werken dan niet.
-</p>
-</noscript>
-<script src="script.js"></script><script src="admin.js"></script>
+  <a class="skip-link" href="#main">Ga naar inhoud</a>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="DE GROND - naar boven">
+        <!-- Zet je officiële logo als logo.png in dezelfde map als index.html -->
+        <img src="logo.png" alt="Logo van DE GROND" onerror="this.style.display='none'">
+        <span class="brand-copy">
+          <span class="brand-name">DE GROND</span>
+          <span class="brand-sub">Democratische beweging</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-label="Menu openen" aria-expanded="false">☰</button>
+
+      <nav class="nav-links" aria-label="Hoofdnavigatie">
+        <a href="#waarom">Waarom</a>
+        <a href="#themas">Onze koers</a>
+        <a href="#waarden">Waarden</a>
+        <a class="btn btn-primary" href="#doe-mee">Doe mee</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="container hero-inner">
+        <div class="reveal">
+          <div class="eyebrow">Stadskanaal • richting 2030</div>
+          <h1>Trots op <span>Stadskanaal.</span></h1>
+          <p class="hero-lead">
+            DE GROND is een democratische beweging voor een gemeente die vrij, menselijk en weerbaar is.
+            Geen marketingmachine uit Den Haag, maar bouwen vanaf de grond — samen met inwoners.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#doe-mee">Doe mee met DE GROND</a>
+            <a class="btn btn-secondary" href="#themas">Bekijk onze koers</a>
+          </div>
+
+          <div class="hero-note">
+            <span>◆</span>
+            <span><strong>Vrij. Nuchter. Weerbaar.</strong> Geen belofte. Beweging.</span>
+          </div>
+        </div>
+
+        <div class="emblem-card reveal" aria-label="DE GROND embleem">
+          <img src="logo.png" alt="Officieel embleem van DE GROND" onerror="this.style.display='none'">
+          <div class="emblem-fallback" aria-hidden="true">
+            <strong>DE GROND</strong>
+            <span>wortels • brug • toekomst</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="manifest" id="waarom">
+      <div class="container">
+        <div class="section-kicker">Waarom DE GROND</div>
+        <h2 class="section-title">Politiek begint niet in een vergaderzaal. Het begint bij wat mensen dagelijks voelen.</h2>
+        <p class="section-intro">
+          Wij geloven dat bestuur sterk én menselijk kan zijn. Dat vrijheid alleen werkt wanneer mensen ook werkelijk mee kunnen doen.
+          En dat macht altijd begrensd, controleerbaar en dienstbaar moet blijven.
+        </p>
+
+        <div class="manifest-grid">
+          <article class="value-card reveal">
+            <strong>Vrijheid</strong>
+            <p>Ruimte om je eigen leven te leiden, zonder onnodige bemoeienis.</p>
+          </article>
+          <article class="value-card reveal">
+            <strong>Menselijkheid</strong>
+            <p>Een overheid die mensen ziet voordat ze dossiers ziet.</p>
+          </article>
+          <article class="value-card reveal">
+            <strong>Integriteit</strong>
+            <p>Macht onder recht. Openheid, verantwoordelijkheid en tegenspraak.</p>
+          </article>
+          <article class="value-card reveal">
+            <strong>Pragmatisme</strong>
+            <p>Niet links of rechts omdat het hoort. Doen wat aantoonbaar werkt.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="themas">
+      <div class="container">
+        <div class="section-kicker">Onze koers voor Stadskanaal</div>
+        <h2 class="section-title">Twee beloften die je aan een gemeente móét kunnen houden.</h2>
+        <p class="section-intro">
+          We beginnen niet met honderd losse verkiezingspunten. We beginnen bij twee menselijke fundamenten waarop de rest gebouwd kan worden.
+        </p>
+
+        <div class="themes-grid">
+          <article class="theme-card reveal">
+            <div class="theme-number">01</div>
+            <h3>Geen kind buitenspel.</h3>
+            <p>
+              Een kind hoort niet minder kansen te krijgen omdat thuis het geld, netwerk of geluk ontbreekt.
+              Sport, ontwikkeling, veiligheid en perspectief moeten bereikbaar zijn voor ieder kind in Stadskanaal.
+            </p>
+            <ul>
+              <li>Meedoen aan sport en cultuur moet haalbaar zijn.</li>
+              <li>Vroeg hulp bieden wanneer een gezin vastloopt.</li>
+              <li>Scholen, verenigingen en gemeente beter laten samenwerken.</li>
+            </ul>
+          </article>
+
+          <article class="theme-card reveal">
+            <div class="theme-number">02</div>
+            <h3>Niemand zakt door het ijs.</h3>
+            <p>
+              Problemen worden duurder en harder wanneer de overheid pas ingrijpt nadat iemand volledig is vastgelopen.
+              Wij willen eerder handelen, menselijk begrenzen en mensen weer perspectief geven.
+            </p>
+            <ul>
+              <li>Sneller één aanspreekpunt bij complexe problemen.</li>
+              <li>Meer nadruk op wonen, bestaanszekerheid en mentale gezondheid.</li>
+              <li>Hulp die mensen competenter en zelfstandiger maakt.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="principles" id="waarden">
+      <div class="container">
+        <div class="section-kicker">Hoe wij politiek willen bedrijven</div>
+        <h2 class="section-title">Geen nieuwe bestuurslaag. Een andere bestuurscultuur.</h2>
+
+        <div class="principles-grid">
+          <article class="principle-card reveal">
+            <div class="icon">⚖️</div>
+            <h3>Macht onder recht</h3>
+            <p>Iedere bestuurder moet tegenspraak kunnen verdragen. Regels gelden óók wanneer ze ongemakkelijk zijn voor de macht.</p>
+          </article>
+
+          <article class="principle-card reveal">
+            <div class="icon">🤝</div>
+            <h3>Bondgenoten, geen schoothondjes</h3>
+            <p>Samenwerken waar het kan, stevig tegenspreken waar het moet. Loyaliteit is iets anders dan kritiekloos volgen.</p>
+          </article>
+
+          <article class="principle-card reveal">
+            <div class="icon">🌱</div>
+            <h3>Bouwen vanaf de grond</h3>
+            <p>Geen beleid over mensen zonder mensen. Inwoners, professionals en verenigingen moeten eerder aan tafel zitten.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <div class="container">
+        <p class="quote reveal">
+          “Sterk naar buiten. <span>Menselijk naar binnen.</span>”
+        </p>
+      </div>
+    </section>
+
+    <section id="doe-mee">
+      <div class="container">
+        <div class="join-wrap reveal">
+          <div class="join-grid">
+            <div>
+              <div class="section-kicker">Doe mee</div>
+              <h2 class="section-title">Stadskanaal verandert niet door erover te mopperen.</h2>
+              <p class="section-intro">
+                Praat mee, help een keer op de markt, denk mee over een onderwerp of bouw mee aan DE GROND richting 2030.
+                Je hoeft het niet overal met ons eens te zijn. Sterker nog: liever niet.
+              </p>
+            </div>
+
+            <div class="join-actions">
+              <!-- VERVANG onderstaande links door je echte WhatsApp / Instagram / Facebook links -->
+              <a class="btn btn-primary" href="https://wa.me/" target="_blank" rel="noopener">Stuur een WhatsApp</a>
+              <a class="btn btn-secondary" href="#" aria-label="Instagram van DE GROND">Instagram</a>
+              <a class="btn btn-secondary" href="#" aria-label="Facebook van DE GROND">Facebook</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong style="color:#F5F1E8">DE GROND</strong> · Democratische beweging · Stadskanaal
+      </div>
+      <div class="footer-links">
+        <a href="#waarom">Waarom</a>
+        <a href="#themas">Koers</a>
+        <a href="#doe-mee">Doe mee</a>
+      </div>
+      <div>© <span id="year"></span> DE GROND</div>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuButton.addEventListener('click', () => {
+      const open = navLinks.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+      menuButton.textContent = open ? '✕' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
