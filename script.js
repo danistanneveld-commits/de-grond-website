@@ -1,6 +1,5 @@
 'use strict';
 
-// Vervang dit voorbeeldadres vóór publicatie.
 const CONTACT_EMAIL = 'daniel.stanneveld@gmail.com';
 
 const menuButton = document.querySelector('.menu-button');
