@@ -371,9 +371,9 @@ a.button:active {
 
 .founder-photo {
   width: 100%;
-  max-width: 420px;
+  max-width: 320px;
   aspect-ratio: 4 / 5;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center top;
 
   display: block;
