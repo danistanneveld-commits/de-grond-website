@@ -334,3 +334,37 @@ a.button:active {
     transform: none;
   }
 }
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.brand-logo {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.brand-text strong {
+    font-weight: 900;
+}
+
+.brand-text span {
+    font-size: 0.75rem;
+}
+
+@media (max-width: 600px) {
+    .brand-logo {
+        width: 46px;
+        height: 46px;
+    }
+}
