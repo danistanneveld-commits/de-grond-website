@@ -14,42 +14,8 @@
 <meta content="https://de-grond-website.pages.dev/logo.png" property="og:image"/>
 <link href="styles.css" rel="stylesheet"/>
 <link href="logo.png" rel="icon" type="image/png"/>
-<!-- Alleen voor de foto in 'Wie wij zijn'. De rest van de vormgeving blijft in styles.css. -->
 <style>
-    .founder-photo-wrap {
-      margin-top: 2rem;
-      max-width: 430px;
-    }
-
-    .founder-photo {
-      display: block;
-      width: 100%;
-      height: auto;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      object-position: center top;
-      border-radius: 22px;
-      border: 1px solid rgba(178, 138, 82, 0.55);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
-    }
-
-    .founder-caption {
-      margin: 0.8rem 0 0;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #B28A52;
-    }
-
-    @media (max-width: 760px) {
-      .founder-photo-wrap {
-        max-width: 100%;
-      }
-    }
-  
-
-    /* Houd het eerste deel van de hero-titel in de oorspronkelijke kleur/opmaak. */
+/* Houd het eerste deel van de hero-titel in de oorspronkelijke kleur/opmaak. */
     .hero h1 .dg-title-main { color: inherit !important; display: inline !important; }
 
     /* =========================================================
@@ -288,8 +254,7 @@
 </div>
 </section>
 <!-- =========================================================
-         WIE WIJ ZIJN — FOTO + TEKST
-         Zorg dat daniel-stanneveld.png in dezelfde GitHub-map staat.
+         WIE WIJ ZIJN
          ========================================================= -->
 <section class="section" data-edit-group="Wie wij zijn" id="wie-wij-zijn">
 <div class="container split">
@@ -470,7 +435,11 @@
   'use strict';
 
   const params = new URLSearchParams(window.location.search);
-  if (params.get('beheer') !== '1') return;
+  const beheerActief = params.get('beheer') === '1' || window.location.hash === '#beheer';
+  if (!beheerActief) return;
+
+  document.documentElement.dataset.beheer = 'actief';
+  console.info('DE GROND beheerstand actief');
 
   const DRAFT_KEY = 'dgWebsiteDraftV2';
   const GITHUB_KEY = 'dgGithubSettingsV1';
