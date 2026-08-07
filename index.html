@@ -1,61 +1,80 @@
-<!doctype html>
+  <!doctype html>
 <html lang="nl">
+
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111B29">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="theme-color"
+    content="#111B29"
+  >
 
   <title>DE GROND — Vrij. Nuchter. Weerbaar.</title>
-  <meta name="description" content="DE GROND is een democratische beweging uit Stadskanaal. Vrij. Nuchter. Weerbaar. Geen kind buitenspel. Niemand door het ijs. Macht onder recht.">
-  <link rel="canonical" href="https://de-grond-website.pages.dev/">
 
-  <meta property="og:title" content="DE GROND — Vrij. Nuchter. Weerbaar.">
-  <meta property="og:description" content="Een menselijk Nederland met ruggengraat. Geen kind buitenspel. Niemand mag door het ijs zakken.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://de-grond-website.pages.dev/">
-  <meta property="og:image" content="https://de-grond-website.pages.dev/logo.png">
+  <meta
+    name="description"
+    content="DE GROND is een democratische beweging uit Stadskanaal. Vrij. Nuchter. Weerbaar. Geen kind buitenspel. Niemand door het ijs. Macht onder recht."
+  >
 
-  <link rel="stylesheet" href="styles.css">
-  <link rel="icon" type="image/png" href="logo.png">
+  <meta
+    name="robots"
+    content="index, follow"
+  >
 
-  <!-- Alleen voor de foto in 'Wie wij zijn'. De rest van de vormgeving blijft in styles.css. -->
-  <style>
-   .founder-photo-wrap {
-    margin-top: 2rem;
-    width: 320px;
-    max-width: 100%;
-}
+  <link
+    rel="canonical"
+    href="https://de-grond-website.pages.dev/"
+  >
 
-.founder-photo {
-    display: block;
-    width: 320px;
-    max-width: 100%;
-    height: auto;
-    aspect-ratio: auto;
-    object-fit: contain;
-    object-position: center;
-    border-radius: 22px;
-    border: 1px solid rgba(178, 138, 82, 0.55);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.24);
-}
-    }
+  <!-- Open Graph -->
+  <meta
+    property="og:title"
+    content="DE GROND — Vrij. Nuchter. Weerbaar."
+  >
 
-    .founder-caption {
-      margin: 0.8rem 0 0;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #B28A52;
-    }
+  <meta
+    property="og:description"
+    content="Een menselijk Nederland met ruggengraat. Geen kind buitenspel. Niemand mag door het ijs zakken."
+  >
 
-    @media (max-width: 760px) {
-      .founder-photo-wrap {
-        max-width: 100%;
-      }
-    }
-  </style>
+  <meta
+    property="og:type"
+    content="website"
+  >
 
+  <meta
+    property="og:url"
+    content="https://de-grond-website.pages.dev/"
+  >
+
+  <meta
+    property="og:image"
+    content="https://de-grond-website.pages.dev/logo.png"
+  >
+
+  <meta
+    property="og:locale"
+    content="nl_NL"
+  >
+
+  <!-- Websitebestanden -->
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="logo.png"
+  >
+
+  <!-- Zoekmachines -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -72,200 +91,566 @@
   </script>
 </head>
 
-<body>
-  <a class="skip-link" href="#inhoud">Ga naar de inhoud</a>
 
-  <!-- =========================================================
-       HEADER / MENU
-       ========================================================= -->
-  <header class="site-header" id="top">
+<body>
+
+  <!-- Toegankelijkheid -->
+  <a
+    class="skip-link"
+    href="#inhoud"
+  >
+    Ga naar de inhoud
+  </a>
+
+
+  <!-- ======================================================
+       HEADER
+       ====================================================== -->
+
+  <header
+    class="site-header"
+    id="top"
+  >
+
     <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="DE GROND, naar boven">
-        <img src="logo.png" alt="Logo DE GROND" width="72" height="72">
+
+      <a
+        class="brand"
+        href="#top"
+        aria-label="DE GROND, terug naar boven"
+      >
+
+        <img
+          class="brand-logo"
+          src="logo.png"
+          alt="Logo van DE GROND"
+          width="72"
+          height="72"
+        >
+
         <span class="brand-text">
           <strong>DE GROND</strong>
           <small>Democratische beweging</small>
         </span>
+
       </a>
 
-      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu">
+
+      <!-- Mobiel menu -->
+      <button
+        class="menu-button"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-menu"
+        aria-label="Menu openen"
+      >
         <span class="sr-only">Menu openen</span>
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
 
-      <nav id="site-menu" class="site-nav" aria-label="Hoofdnavigatie">
-        <a href="#missie">Missie</a>
-        <a href="#speerpunten">Onze plannen</a>
-        <a href="#stadskanaal">Stadskanaal 2030</a>
-        <a href="#wie-wij-zijn">Wie wij zijn</a>
-        <a href="#vragen">Vragen</a>
-        <button class="button button-small join-trigger" type="button">Doe mee</button>
+
+      <nav
+        id="site-menu"
+        class="site-nav"
+        aria-label="Hoofdnavigatie"
+      >
+
+        <a href="#missie">
+          Missie
+        </a>
+
+        <a href="#speerpunten">
+          Onze plannen
+        </a>
+
+        <a href="#stadskanaal">
+          Stadskanaal 2030
+        </a>
+
+        <a href="#wie-wij-zijn">
+          Wie wij zijn
+        </a>
+
+        <a href="#vragen">
+          Vragen
+        </a>
+
+        <button
+          class="button button-small join-trigger"
+          type="button"
+        >
+          Doe mee
+        </button>
+
       </nav>
+
     </div>
+
   </header>
 
+
+  <!-- ======================================================
+       HOOFDINHOUD
+       ====================================================== -->
+
   <main id="inhoud">
-    <!-- =========================================================
-         HERO — HIER KUN JE DE BELANGRIJKSTE TEKST AANPASSEN
-         ========================================================= -->
+
+
+    <!-- ====================================================
+         HERO
+         ==================================================== -->
+
     <section class="hero">
-      <div class="hero-glow" aria-hidden="true"></div>
+
+      <div
+        class="hero-glow"
+        aria-hidden="true"
+      ></div>
+
 
       <div class="container hero-grid">
+
         <div class="hero-copy reveal">
-          <p class="eyebrow">Stadskanaal 2030</p>
 
-          <h1>De wortels liggen hier. <span>Nu bouwen we verder.</span></h1>
-
-          <p class="hero-lead">
-            DE GROND begint in Stadskanaal. Vrij, nuchter en weerbaar.
-            Geen kind buitenspel. Niemand door het ijs. Macht onder recht.
+          <p class="eyebrow">
+            Stadskanaal 2030
           </p>
 
+          <h1>
+            De wortels liggen hier.
+            <span>Nu bouwen we verder.</span>
+          </h1>
+
+          <p class="hero-lead">
+            DE GROND begint in Stadskanaal.
+            Vrij, nuchter en weerbaar.
+            Geen kind buitenspel.
+            Niemand door het ijs.
+            Macht onder recht.
+          </p>
+
+
           <div class="hero-actions">
-            <button class="button join-trigger" type="button">Word medegrondlegger</button>
-            <a class="button button-ghost" href="#speerpunten">Bekijk onze koers</a>
+
+            <button
+              class="button join-trigger"
+              type="button"
+            >
+              Word medegrondlegger
+            </button>
+
+            <a
+              class="button button-ghost"
+              href="#speerpunten"
+            >
+              Bekijk onze koers
+            </a>
+
           </div>
 
-          <ul class="trust-row" aria-label="Onze uitgangspunten">
+
+          <ul
+            class="trust-row"
+            aria-label="Onze uitgangspunten"
+          >
             <li>Democratisch</li>
             <li>Rechtsstatelijk</li>
             <li>Geweldloos</li>
           </ul>
+
         </div>
 
-        <aside class="manifest-card reveal" aria-label="Kernbelofte">
-          <p class="manifest-number">01</p>
-          <h2>Sterk naar buiten.<br>Menselijk naar binnen.</h2>
-          <p>Een overheid die grenzen bewaakt, macht begrenst en mensen nooit tot dossier reduceert.</p>
+
+        <aside
+          class="manifest-card reveal"
+          aria-label="Kernbelofte van DE GROND"
+        >
+
+          <p class="manifest-number">
+            01
+          </p>
+
+          <h2>
+            Sterk naar buiten.<br>
+            Menselijk naar binnen.
+          </h2>
+
+          <p>
+            Een overheid die grenzen bewaakt,
+            macht begrenst en mensen nooit
+            tot dossier reduceert.
+          </p>
+
 
           <div class="manifest-seal">
             <span>Vrij</span>
             <span>Nuchter</span>
             <span>Weerbaar</span>
           </div>
+
         </aside>
+
       </div>
+
     </section>
 
-    <!-- KERNZINNEN -->
-    <section class="ticker" aria-label="Kernzinnen">
+
+    <!-- ====================================================
+         KERNZINNEN
+         ==================================================== -->
+
+    <section
+      class="ticker"
+      aria-label="Kernzinnen van DE GROND"
+    >
+
       <div class="ticker-track">
-        <span>Laat je niet gek maken</span><i aria-hidden="true">✦</i>
-        <span>Niemand mag door het ijs zakken</span><i aria-hidden="true">✦</i>
-        <span>Zonder begrenzing wordt macht een beest</span><i aria-hidden="true">✦</i>
-        <span>Geen belofte. Beweging.</span><i aria-hidden="true">✦</i>
+
+        <span>
+          Laat je niet gek maken
+        </span>
+
+        <i aria-hidden="true">✦</i>
+
+        <span>
+          Niemand mag door het ijs zakken
+        </span>
+
+        <i aria-hidden="true">✦</i>
+
+        <span>
+          Zonder begrenzing wordt macht een beest
+        </span>
+
+        <i aria-hidden="true">✦</i>
+
+        <span>
+          Geen belofte. Beweging.
+        </span>
+
+        <i aria-hidden="true">✦</i>
+
       </div>
+
     </section>
 
-    <!-- =========================================================
+
+    <!-- ====================================================
          MISSIE
-         ========================================================= -->
-    <section class="section" id="missie">
+         ==================================================== -->
+
+    <section
+      class="section"
+      id="missie"
+    >
+
       <div class="container split">
+
         <div class="section-heading reveal">
-          <p class="eyebrow">Onze missie</p>
-          <h2>Geen systeem boven de mens. Geen mens boven de wet.</h2>
+
+          <p class="eyebrow">
+            Onze missie
+          </p>
+
+          <h2>
+            Geen systeem boven de mens.
+            Geen mens boven de wet.
+          </h2>
+
         </div>
+
 
         <div class="prose reveal">
+
           <p>
-            Wij geloven in vrijheid met verantwoordelijkheid, menselijkheid met grenzen
-            en samenwerking zonder bestuurlijke pap. Iedereen mag meewegen; niemand mag gijzelen.
+            Wij geloven in vrijheid met verantwoordelijkheid,
+            menselijkheid met grenzen en samenwerking zonder
+            bestuurlijke pap.
+            Iedereen mag meewegen; niemand mag gijzelen.
           </p>
+
           <p>
-            DE GROND wil een overheid die problemen vroeg oplost, eerlijk gedrag sterker maakt
-            dan crimineel overleven en mensen niet eerst volledig kapot laat gaan voordat hulp begint.
+            DE GROND wil een overheid die problemen vroeg oplost,
+            eerlijk gedrag sterker maakt dan crimineel overleven
+            en mensen niet eerst volledig kapot laat gaan
+            voordat hulp begint.
           </p>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- =========================================================
-         ONZE PLANNEN / VIER FUNDAMENTEN
-         ========================================================= -->
-    <section class="section section-dark" id="speerpunten">
+
+    <!-- ====================================================
+         ONZE PLANNEN
+         ==================================================== -->
+
+    <section
+      class="section section-dark"
+      id="speerpunten"
+    >
+
       <div class="container">
+
         <div class="section-heading centered reveal">
-          <p class="eyebrow">Waar we voor staan</p>
-          <h2>Vier fundamenten. Eén menselijke rechtsstaat.</h2>
+
+          <p class="eyebrow">
+            Waar we voor staan
+          </p>
+
+          <h2>
+            Vier fundamenten.
+            Eén menselijke rechtsstaat.
+          </h2>
+
         </div>
+
 
         <div class="card-grid">
-          <article class="policy-card reveal">
-            <span class="card-icon" aria-hidden="true">♥</span>
-            <p class="card-kicker">Jeugd</p>
-            <h3>Geen kind buitenspel</h3>
-            <p>Sport, mentale gezondheid en kansen mogen niet afhangen van de portemonnee of postcode van ouders.</p>
-          </article>
+
+
+          <!-- JEUGD -->
 
           <article class="policy-card reveal">
-            <span class="card-icon" aria-hidden="true">⌂</span>
-            <p class="card-kicker">Wonen</p>
-            <h3>Niemand door het ijs</h3>
-            <p>Sneller bouwen, Housing First en één verantwoordelijke regisseur wanneer mensen dreigen vast te lopen.</p>
+
+            <span
+              class="card-icon"
+              aria-hidden="true"
+            >
+              ♥
+            </span>
+
+            <p class="card-kicker">
+              Jeugd
+            </p>
+
+            <h3>
+              Geen kind buitenspel
+            </h3>
+
+            <p>
+              Sport, mentale gezondheid en kansen
+              mogen niet afhangen van de portemonnee
+              of postcode van ouders.
+            </p>
+
           </article>
 
-          <article class="policy-card reveal">
-            <span class="card-icon" aria-hidden="true">◆</span>
-            <p class="card-kicker">Veiligheid</p>
-            <h3>Waardigheidsstaat met tanden</h3>
-            <p>Hard tegen geweld en ondermijning, menselijk tegen slachtoffers en streng op misbruik van overheidsmacht.</p>
-          </article>
+
+          <!-- WONEN -->
 
           <article class="policy-card reveal">
-            <span class="card-icon" aria-hidden="true">◎</span>
-            <p class="card-kicker">Bestuur</p>
-            <h3>Macht onder recht</h3>
-            <p>Transparante besluiten, onafhankelijke controle en echte invloed voor inwoners zonder eindeloos vergadercircus.</p>
+
+            <span
+              class="card-icon"
+              aria-hidden="true"
+            >
+              ⌂
+            </span>
+
+            <p class="card-kicker">
+              Wonen
+            </p>
+
+            <h3>
+              Niemand door het ijs
+            </h3>
+
+            <p>
+              Sneller bouwen, Housing First en
+              één verantwoordelijke regisseur wanneer
+              mensen dreigen vast te lopen.
+            </p>
+
           </article>
+
+
+          <!-- VEILIGHEID -->
+
+          <article class="policy-card reveal">
+
+            <span
+              class="card-icon"
+              aria-hidden="true"
+            >
+              ◆
+            </span>
+
+            <p class="card-kicker">
+              Veiligheid
+            </p>
+
+            <h3>
+              Waardigheidsstaat met tanden
+            </h3>
+
+            <p>
+              Hard tegen geweld en ondermijning,
+              menselijk tegen slachtoffers en streng
+              op misbruik van overheidsmacht.
+            </p>
+
+          </article>
+
+
+          <!-- BESTUUR -->
+
+          <article class="policy-card reveal">
+
+            <span
+              class="card-icon"
+              aria-hidden="true"
+            >
+              ◎
+            </span>
+
+            <p class="card-kicker">
+              Bestuur
+            </p>
+
+            <h3>
+              Macht onder recht
+            </h3>
+
+            <p>
+              Transparante besluiten, onafhankelijke controle
+              en echte invloed voor inwoners zonder
+              eindeloos vergadercircus.
+            </p>
+
+          </article>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- =========================================================
+
+    <!-- ====================================================
          STADSKANAAL 2030
-         ========================================================= -->
-    <section class="section stadskanaal" id="stadskanaal">
+         ==================================================== -->
+
+    <section
+      class="section stadskanaal"
+      id="stadskanaal"
+    >
+
       <div class="container locality-grid">
-        <div class="locality-art reveal" aria-hidden="true">
+
+
+        <!-- Illustratie -->
+
+        <div
+          class="locality-art reveal"
+          aria-hidden="true"
+        >
+
           <div class="sun"></div>
-          <div class="water-tower"><span></span></div>
+
+          <div class="water-tower">
+            <span></span>
+          </div>
+
           <div class="canal"></div>
+
           <div class="bridge-shape"></div>
+
         </div>
 
+
+        <!-- Tekst -->
+
         <div class="locality-copy reveal">
-          <p class="eyebrow">Onze proeftuin</p>
-          <h2>Trots op Stadskanaal 💗</h2>
+
+          <p class="eyebrow">
+            Onze proeftuin
+          </p>
+
+          <h2>
+            Trots op Stadskanaal 💗
+          </h2>
+
           <p>
-            Niet wachten tot Den Haag ineens wijs wordt. We beginnen lokaal:
-            met sterke buurten, sport voor ieder kind, ruimte voor kleine ondernemers
+            Niet wachten tot Den Haag ineens wijs wordt.
+            We beginnen lokaal: met sterke buurten,
+            sport voor ieder kind, ruimte voor kleine ondernemers
             en een bestuur dat zichtbaar verantwoordelijkheid neemt.
           </p>
 
+
           <div class="locality-points">
-            <div><strong>500</strong><span>euro sportpas als ambitie</span></div>
-            <div><strong>72u</strong><span>voor een vaste casusregisseur</span></div>
-            <div><strong>1</strong><span>gemeenschap die niemand afschrijft</span></div>
+
+            <div>
+              <strong>€500</strong>
+              <span>
+                sportpas als ambitie
+              </span>
+            </div>
+
+            <div>
+              <strong>72u</strong>
+              <span>
+                voor een vaste casusregisseur
+              </span>
+            </div>
+
+            <div>
+              <strong>1</strong>
+              <span>
+                gemeenschap die niemand afschrijft
+              </span>
+            </div>
+
           </div>
 
-          <button class="text-link join-trigger" type="button">Help de lokale beweging bouwen →</button>
+
+          <button
+            class="text-link join-trigger"
+            type="button"
+          >
+            Help de lokale beweging bouwen →
+          </button>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- =========================================================
-         WIE WIJ ZIJN — FOTO + TEKST
-         Zorg dat daniel-stanneveld.png in dezelfde GitHub-map staat.
-         ========================================================= -->
-    <section class="section" id="wie-wij-zijn">
+
+    <!-- ====================================================
+         WIE WIJ ZIJN
+         ==================================================== -->
+
+    <section
+      class="section"
+      id="wie-wij-zijn"
+    >
+
       <div class="container split">
+
+
+        <!-- Linkerkant -->
+
         <div class="section-heading reveal">
-          <p class="eyebrow">Wie wij zijn</p>
-          <h2>Politiek begint bij mensen, niet bij een partijmachine.</h2>
+
+          <p class="eyebrow">
+            Wie wij zijn
+          </p>
+
+          <h2>
+            Politiek begint bij mensen,
+            niet bij een partijmachine.
+          </h2>
+
 
           <figure class="founder-photo-wrap">
+
             <img
               class="founder-photo"
               src="daniel-stanneveld.png"
@@ -275,209 +660,523 @@
               loading="lazy"
               decoding="async"
             >
-            <figcaption class="founder-caption">Daniel Stanneveld · Initiatiefnemer</figcaption>
+
+            <figcaption class="founder-caption">
+              Daniel Stanneveld · Initiatiefnemer
+            </figcaption>
+
           </figure>
+
         </div>
+
+
+        <!-- Rechterkant -->
 
         <div class="prose reveal">
-          <h3>Daniel Stanneveld</h3>
-          <p><strong>Initiatiefnemer van DE GROND.</strong></p>
+
+          <h3>
+            Daniel Stanneveld
+          </h3>
 
           <p>
-            DE GROND wordt van onderop gebouwd. Niet als carrièreproject,
-            maar als een democratische beweging waarin inwoners zelf
-            verantwoordelijkheid nemen voor hun gemeenschap.
+            <strong>
+              Initiatiefnemer van DE GROND.
+            </strong>
           </p>
 
           <p>
-            We geloven dat politiek tegelijk menselijk én weerbaar kan zijn:
-            vrijheid met verantwoordelijkheid, een sterke rechtsstaat,
-            eerlijke samenwerking en niemand afschrijven.
+            DE GROND wordt van onderop gebouwd.
+            Niet als carrièreproject, maar als een democratische
+            beweging waarin inwoners zelf verantwoordelijkheid
+            nemen voor hun gemeenschap.
           </p>
 
           <p>
-            Stadskanaal is waar we beginnen. Hier leggen we de eerste wortels.
+            We geloven dat politiek tegelijk menselijk én
+            weerbaar kan zijn: vrijheid met verantwoordelijkheid,
+            een sterke rechtsstaat, eerlijke samenwerking
+            en niemand afschrijven.
           </p>
+
+          <p>
+            Stadskanaal is waar we beginnen.
+            Hier leggen we de eerste wortels.
+          </p>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- QUOTE -->
+
+    <!-- ====================================================
+         QUOTE
+         ==================================================== -->
+
     <section class="section quote-section">
+
       <div class="container reveal">
+
         <blockquote>
-          “Politiek begint niet bij een zetel. Het begint wanneer gewone mensen besluiten dat wegkijken geen optie meer is.”
+          “Politiek begint niet bij een zetel.
+          Het begint wanneer gewone mensen besluiten
+          dat wegkijken geen optie meer is.”
         </blockquote>
+
       </div>
+
     </section>
 
-    <!-- =========================================================
+
+    <!-- ====================================================
          VEELGESTELDE VRAGEN
-         ========================================================= -->
-    <section class="section" id="vragen">
+         ==================================================== -->
+
+    <section
+      class="section"
+      id="vragen"
+    >
+
       <div class="container faq-grid">
+
+
         <div class="section-heading reveal">
-          <p class="eyebrow">Veelgestelde vragen</p>
-          <h2>Nuchtere antwoorden, zonder Haagse rookmachine.</h2>
+
+          <p class="eyebrow">
+            Veelgestelde vragen
+          </p>
+
+          <h2>
+            Nuchtere antwoorden,
+            zonder Haagse rookmachine.
+          </h2>
+
         </div>
+
 
         <div class="accordion reveal">
+
+
           <details>
-            <summary>Is DE GROND links of rechts?</summary>
+
+            <summary>
+              Is DE GROND links of rechts?
+            </summary>
+
             <p>
-              DE GROND is sociaal-liberaal en patriottisch: vrijheid én bestaanszekerheid,
+              DE GROND is sociaal-liberaal en patriottisch:
+              vrijheid én bestaanszekerheid,
               een sterke rechtsstaat én een sterke landsverdediging.
             </p>
+
           </details>
 
-          <details>
-            <summary>Kan ik nu al officieel lid worden?</summary>
-            <p>
-              Deze gratis website verzamelt nog geen officiële ledenadministratie of betalingen.
-              Je kunt wel veilig je interesse kenbaar maken via je eigen e-mailprogramma.
-            </p>
-          </details>
 
           <details>
-            <summary>Waarom nog geen online betaling?</summary>
+
+            <summary>
+              Kan ik nu al officieel lid worden?
+            </summary>
+
             <p>
-              Een betrouwbare ledenadministratie vereist beveiligde opslag, juridische inrichting
-              en een betaalprovider. Dat kan later worden gekoppeld, maar is niet volledig gratis.
+              Deze website verzamelt nog geen officiële
+              ledenadministratie of betalingen.
+              Je kunt wel je interesse kenbaar maken
+              via je eigen e-mailprogramma.
             </p>
+
           </details>
 
+
           <details>
-            <summary>Hoe kan ik meehelpen?</summary>
+
+            <summary>
+              Waarom nog geen online betaling?
+            </summary>
+
             <p>
-              Als medegrondlegger, vrijwilliger, inhoudelijk denker, campagnebouwer of kritische meelezer.
-              Een beweging heeft geen klapvee nodig, maar mensen met geweten en initiatief.
+              Een betrouwbare ledenadministratie vereist
+              beveiligde opslag, juridische inrichting
+              en een geschikte betaalprovider.
+              Dat bouwen we zorgvuldig op.
             </p>
+
           </details>
+
+
+          <details>
+
+            <summary>
+              Hoe kan ik meehelpen?
+            </summary>
+
+            <p>
+              Als medegrondlegger, vrijwilliger,
+              inhoudelijk denker, campagnebouwer
+              of kritische meelezer.
+              Een beweging heeft geen klapvee nodig,
+              maar mensen met geweten en initiatief.
+            </p>
+
+          </details>
+
         </div>
+
       </div>
+
     </section>
 
-    <!-- CALL TO ACTION -->
+
+    <!-- ====================================================
+         CALL TO ACTION
+         ==================================================== -->
+
     <section class="cta-section">
+
       <div class="container cta-card reveal">
+
         <div>
-          <p class="eyebrow">Geen belofte. Beweging.</p>
-          <h2>Bouw mee aan de grond onder onze voeten.</h2>
+
+          <p class="eyebrow">
+            Geen belofte. Beweging.
+          </p>
+
+          <h2>
+            Bouw mee aan de grond
+            onder onze voeten.
+          </h2>
+
         </div>
 
-        <button class="button button-light join-trigger" type="button">Ik wil meedoen</button>
+
+        <button
+          class="button button-light join-trigger"
+          type="button"
+        >
+          Ik wil meedoen
+        </button>
+
       </div>
+
     </section>
+
   </main>
 
-  <!-- =========================================================
+
+  <!-- ======================================================
        FOOTER
-       ========================================================= -->
+       ====================================================== -->
+
   <footer class="site-footer">
+
     <div class="container footer-grid">
+
+
+      <!-- Merk -->
+
       <div>
-        <a class="footer-brand" href="#top">
-          <img src="logo.png" alt="Logo DE GROND" width="60" height="60">
+
+        <a
+          class="footer-brand brand"
+          href="#top"
+          aria-label="DE GROND, terug naar boven"
+        >
+
+          <img
+            class="brand-logo"
+            src="logo.png"
+            alt="Logo van DE GROND"
+            width="60"
+            height="60"
+            loading="lazy"
+          >
+
           <span class="brand-text">
-            <strong>DE GROND</strong>
-            <small>Vrij. Nuchter. Weerbaar.</small>
+
+            <strong>
+              DE GROND
+            </strong>
+
+            <small>
+              Vrij. Nuchter. Weerbaar.
+            </small>
+
           </span>
+
         </a>
 
-        <p>Een democratische, rechtsstatelijke en geweldloze beweging.</p>
+        <p>
+          Een democratische, rechtsstatelijke
+          en geweldloze beweging.
+        </p>
+
       </div>
 
-      <div>
-        <h3>Beweging</h3>
-        <a href="#missie">Missie</a>
-        <a href="#speerpunten">Onze plannen</a>
-        <a href="#stadskanaal">Stadskanaal 2030</a>
-        <a href="#wie-wij-zijn">Wie wij zijn</a>
-      </div>
+
+      <!-- Navigatie -->
 
       <div>
-        <h3>Juridisch</h3>
-        <button class="footer-link" id="privacy-open" type="button">Privacy</button>
-        <button class="footer-link" id="cookies-open" type="button">Cookies</button>
-        <p class="copyright">© <span id="year"></span> DE GROND</p>
+
+        <h3>
+          Beweging
+        </h3>
+
+        <a href="#missie">
+          Missie
+        </a>
+
+        <a href="#speerpunten">
+          Onze plannen
+        </a>
+
+        <a href="#stadskanaal">
+          Stadskanaal 2030
+        </a>
+
+        <a href="#wie-wij-zijn">
+          Wie wij zijn
+        </a>
+
       </div>
+
+
+      <!-- Juridisch -->
+
+      <div>
+
+        <h3>
+          Juridisch
+        </h3>
+
+        <button
+          class="footer-link"
+          id="privacy-open"
+          type="button"
+        >
+          Privacy
+        </button>
+
+        <button
+          class="footer-link"
+          id="cookies-open"
+          type="button"
+        >
+          Cookies
+        </button>
+
+        <p class="copyright">
+          © <span id="year"></span> DE GROND
+        </p>
+
+      </div>
+
     </div>
+
   </footer>
 
-  <!-- =========================================================
-       DOE MEE-VENSTER
-       script.js regelt het openen, sluiten en versturen.
-       ========================================================= -->
-  <dialog class="modal" id="join-modal" aria-labelledby="join-title">
-    <button class="modal-close" type="button" aria-label="Sluiten">×</button>
+
+  <!-- ======================================================
+       DOE MEE VENSTER
+       ====================================================== -->
+
+  <dialog
+    class="modal"
+    id="join-modal"
+    aria-labelledby="join-title"
+  >
+
+    <button
+      class="modal-close"
+      type="button"
+      aria-label="Venster sluiten"
+    >
+      ×
+    </button>
+
 
     <div class="modal-content">
-      <p class="eyebrow">Word medegrondlegger</p>
-      <h2 id="join-title">Laat weten hoe jij wilt bijdragen.</h2>
+
+      <p class="eyebrow">
+        Word medegrondlegger
+      </p>
+
+      <h2 id="join-title">
+        Laat weten hoe jij wilt bijdragen.
+      </h2>
 
       <p class="modal-note">
         Je gegevens worden niet op deze website opgeslagen.
-        Na verzenden opent je eigen e-mailprogramma met een vooraf ingevuld bericht.
+        Na verzenden opent je eigen e-mailprogramma
+        met een vooraf ingevuld bericht.
       </p>
 
+
       <form id="join-form">
+
+
         <label>
+
           Naam
-          <input name="name" autocomplete="name" required maxlength="80">
+
+          <input
+            name="name"
+            type="text"
+            autocomplete="name"
+            required
+            maxlength="80"
+          >
+
         </label>
 
+
         <label>
+
           E-mailadres
-          <input name="email" type="email" autocomplete="email" required maxlength="120">
+
+          <input
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            maxlength="120"
+          >
+
         </label>
 
+
         <label>
+
           Ik wil bijdragen als
-          <select name="role" required>
-            <option value="">Maak een keuze</option>
-            <option>Medegrondlegger</option>
-            <option>Vrijwilliger</option>
-            <option>Inhoudelijk denker</option>
-            <option>Campagnebouwer</option>
-            <option>Ik weet het nog niet</option>
+
+          <select
+            name="role"
+            required
+          >
+
+            <option value="">
+              Maak een keuze
+            </option>
+
+            <option value="Medegrondlegger">
+              Medegrondlegger
+            </option>
+
+            <option value="Vrijwilliger">
+              Vrijwilliger
+            </option>
+
+            <option value="Inhoudelijk denker">
+              Inhoudelijk denker
+            </option>
+
+            <option value="Campagnebouwer">
+              Campagnebouwer
+            </option>
+
+            <option value="Ik weet het nog niet">
+              Ik weet het nog niet
+            </option>
+
           </select>
+
         </label>
 
+
         <label>
+
           Mijn bericht
+
           <textarea
             name="message"
             rows="4"
             maxlength="600"
             placeholder="Vertel kort wat je aanspreekt of wat je kunt bijdragen."
           ></textarea>
+
         </label>
+
 
         <label class="check-label">
-          <input name="consent" type="checkbox" required>
-          <span>Ik kies er zelf voor om deze informatie per e-mail te versturen.</span>
+
+          <input
+            name="consent"
+            type="checkbox"
+            required
+          >
+
+          <span>
+            Ik kies er zelf voor om deze informatie
+            per e-mail te versturen.
+          </span>
+
         </label>
 
-        <button class="button" type="submit">Open mijn e-mail</button>
+
+        <button
+          class="button"
+          type="submit"
+        >
+          Open mijn e-mail
+        </button>
+
       </form>
+
     </div>
+
   </dialog>
 
-  <!-- PRIVACY / COOKIES-VENSTER -->
-  <dialog class="modal text-modal" id="info-modal" aria-labelledby="info-title">
-    <button class="modal-close" type="button" aria-label="Sluiten">×</button>
+
+  <!-- ======================================================
+       PRIVACY / COOKIES
+       ====================================================== -->
+
+  <dialog
+    class="modal text-modal"
+    id="info-modal"
+    aria-labelledby="info-title"
+  >
+
+    <button
+      class="modal-close"
+      type="button"
+      aria-label="Venster sluiten"
+    >
+      ×
+    </button>
+
+
     <div class="modal-content">
-      <h2 id="info-title">Privacy</h2>
+
+      <h2 id="info-title">
+        Privacy
+      </h2>
+
       <div id="info-body"></div>
+
     </div>
+
   </dialog>
+
+
+  <!-- ======================================================
+       GEEN JAVASCRIPT
+       ====================================================== -->
 
   <noscript>
+
     <p class="noscript">
-      JavaScript staat uit. De inhoud blijft leesbaar, maar het menu en contactvenster werken dan niet.
+      JavaScript staat uit.
+      De inhoud blijft leesbaar,
+      maar het menu en contactvenster werken dan niet.
     </p>
+
   </noscript>
 
+
+  <!-- JavaScript altijd als laatste -->
   <script src="script.js"></script>
+
 </body>
+
 </html>
